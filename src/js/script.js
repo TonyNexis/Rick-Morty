@@ -1,6 +1,6 @@
-import filter from './modules/filter';
+import filter from './modules/filter.js';
+import scrollMargin from './modules/scrollMargin.js';
 
 window.addEventListener('DOMContentLoaded', () => {
 filter();
-console.log('test pull request');
 });
