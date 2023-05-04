@@ -59,7 +59,7 @@ body {
     outline: none;
 }
 
-button {
+.btn_search {
     border: none;
     margin: 0;
     padding: 0;
@@ -71,7 +71,7 @@ button {
 
   }
 
-  button:active {
+  .btn_search:active {
     height: 15px;
     width: 15px;
     margin-right: 3px;

@@ -1,13 +1,15 @@
 'use strict';
 
 let path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/js/script.js',
+  entry: path.resolve(__dirname, 'src/js', 'script.js'),
   output: {
     filename: 'bundle.js',
-    path: __dirname + '/dist'
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
   },
   watch: true,
 
@@ -20,4 +22,7 @@ module.exports = {
       { test: /\.(js)$/, use: 'babel-loader' },
     ],
   },
+  plugins: [new HtmlWebpackPlugin({
+    template: path.resolve(__dirname, 'src', 'index.html'),
+  })],
 };
