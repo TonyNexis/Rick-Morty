@@ -1,6 +1,7 @@
 import filter from './modules/filter.js';
-import scrollMargin from './modules/scrollMargin.js';
+import profile from './modules/profile.js';
 
 window.addEventListener('DOMContentLoaded', () => {
 filter();
+profile();
 });
