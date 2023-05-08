@@ -12,15 +12,17 @@ const api = () => {
     }
 
         fetchCharacters().then(characters => {
-            console.log(characters[0].image);
-            for (let i = 0; i <= characters.length; i++) {
+            // console.log(characters[0].name);
+            const cards = document.querySelector('.cards');
+            for (let i = 0; i < characters.length; i++) {
                 let card = document.createElement('div');
                 card.classList.add('card');
-                card.innerHTML = '<img class="card_img" src=`${characters[i].image}`>
-                <div class="card_info"">
-                  <p class="name">Rock Sanchez</р>
-                  <p class="race">Human</p>
-                </div>';
+                card.innerHTML = `<img class="card_img" src="${characters[i].image}" alt="">
+                <div class="card_info">
+                  <p class="name">${characters[i].name}</p>
+                  <p class="race">${characters[i].species}</p>
+                </div>`;
+                cards.appendChild(card);
             }
         });
 };

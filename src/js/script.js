@@ -3,7 +3,7 @@ import profile from './modules/profile.js';
 import api from './modules/api.js';
 
 window.addEventListener('DOMContentLoaded', () => {
+api();
 filter();
 profile();
-api();
 });
