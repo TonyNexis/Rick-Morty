@@ -5,59 +5,111 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Characters</title>
-    <link rel="stylesheet" href="/src/assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
   </head>
   <body>
-    <div class="flex-container">
+    <div class="flex-container main_page">
       <header>
         <img
           class="main_img"
-          src="/src/assets/img/PngItem_438051 1.png"
+          src="./assets/img/PngItem_438051 1.png"
           alt="Rick & Morty"
         />
       </header>
       <!-- <main> -->
         <div class="search_bar">
-            <button type="submit"><img class="search_img" src="/src/assets/img/Vector.svg" alt="search"></button>
+            <button class="btn_search" type="submit"><img class="search_img" src="./assets/img/Vector.svg" alt="search"></button>
             
           <input class="search_input" id="name-filter" required placeholder="Filter by name..." type="text" name="filter"></input>
         </div>
         <div class="cards">
-          <div class="card"><img src="/src/assets/img/_image_.png" alt="">
-            <p class="name">Rick Sanchez</р>
-            <p class="race">Human</p>
+          <div class="card"><img class="card_img" src="./assets/img/_image_.png" alt="">
+            <div class="card_info">
+              <p class="name">Sergiy Gridovy</р>
+              <p class="race">Elf</p>
+            </div>
           </div>
-          <div class="card"><img src="/src/assets/img/_image_.png" alt="">
-            <p class="name">Rick Sanchez</p>
-            <p class="race">Human</p>
+          <div class="card"><img class="card_img" src="./assets/img/_image_.png" alt="">
+            <div class="card_info">
+              <p class="name">Anton Tymchyk</р>
+              <p class="race">Dwarf</p>
+            </div>
           </div>
-          <div class="card"><img src="/src/assets/img/_image_.png" alt="">
-            <p class="name">Rick Sanchez</p>
-            <p class="race">Human</p>
+          <div class="card"><img class="card_img" src="./assets/img/_image_.png" alt="">
+            <div class="card_info">
+              <p class="name">Hulio Eglesias</р>
+              <p class="race">Orc</p>
+            </div>
           </div>
-          <div class="card"><img src="/src/assets/img/_image_.png" alt="">
-            <p class="name">ROCK Sanchez</p>
-            <p class="race">Human</p>
+          <div class="card"><img class="card_img" src="./assets/img/_image_.png" alt="">
+            <div class="card_info">
+              <p class="name">Rick Sanchez</р>
+              <p class="race">Human</p>
+            </div>
           </div>
-          <div class="card"><img src="/src/assets/img/_image_.png" alt="">
-            <p class="name">Rick Sanchez</p>
-            <p class="race">Human</p>
+          <div class="card"><img class="card_img" src="./assets/img/_image_.png" alt="">
+            <div class="card_info">
+              <p class="name">Rick Sanchez</р>
+              <p class="race">Human</p>
+            </div>
           </div>
-          <div class="card"><img src="/src/assets/img/_image_.png" alt="">
-            <p class="name">Rick Sanchez</p>
-            <p class="race">Human</p>
+          <div class="card"><img class="card_img" src="./assets/img/_image_.png" alt="">
+            <div class="card_info">
+              <p class="name">Rick Sanchez</р>
+              <p class="race">Human</p>
+            </div>
           </div>
-          <div class="card"><img src="/src/assets/img/_image_.png" alt="">
-            <p class="name">Rick Sanchez</p>
-            <p class="race">Human</p>
+          <div class="card"><img class="card_img" src="./assets/img/_image_.png" alt="">
+            <div class="card_info">
+              <p class="name">Rick Sanchez</р>
+              <p class="race">Human</p>
+            </div>
           </div>
-          <div class="card"><img src="/src/assets/img/_image_.png" alt="">
-            <p class="name">Rick Sanchez</p>
-            <p class="race">Human</p>
+          <div class="card"><img class="card_img" src="./assets/img/_image_.png" alt="">
+            <div class="card_info"">
+              <p class="name">Rock Sanchez</р>
+              <p class="race">Human</p>
+            </div>
           </div>
         </div>
+      </div>
       <!-- </main> -->
+
+    <div class="profile_page">
+      <button class="profile_page_btn"><svg class="arrow" width="16" height="16" viewBox="0 0 16 16" >
+        <path d="M16 7H3.83L9.42 1.41L8 0L0 8L8 16L9.41 14.59L3.83 9H16V7Z"/>
+        </svg>
+        <span>GO BACK</span></button>
+      <div class="flex-container profile">
+        <img class="profile_img" src="./assets/img/profile_image.png" alt="profile_image">
+        <p class="profile_name">Rick Sanchez</p>
+        <p class="profile_info">Informations</p>
+        <div class="profile_container">
+          <p class="profile_cont_mainText">Gender</p>
+          <p class="profile_cont_secondText">Male</p>
+        </div>
+        <div class="profile_container">
+          <p class="profile_cont_mainText">Status</p>
+          <p class="profile_cont_secondText">Alive</p>
+        </div>
+        <div class="profile_container">
+          <p class="profile_cont_mainText">Specie</p>
+          <p id="race" class="profile_cont_secondText">Human</p>
+        </div>
+        <div class="profile_container">
+          <p class="profile_cont_mainText">Origin</p>
+          <p class="profile_cont_secondText">Earth (C-137)</p>
+        </div>
+        <div class="profile_container">
+          <p class="profile_cont_mainText">Type</p>
+          <p class="profile_cont_secondText">Unknown</p>
+        </div>
+      </div>
     </div>
-    <script src="../dist/js/bundle.js"></script>
+    <!-- <script src="../dist/bundle.js"></script> -->
+    <script type="module" src="./js/script.js"></script>
   </body>
 </html>
