@@ -1,9 +1,9 @@
 import filter from './modules/filter.js';
 import profile from './modules/profile.js';
-import api from './modules/api.js';
+import getCharacters from './modules/getCharacters.js';
 
 window.addEventListener('DOMContentLoaded', () => {
-api();
+getCharacters();
 filter();
 profile();
 });

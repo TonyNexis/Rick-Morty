@@ -1,4 +1,4 @@
-const api = () => {
+const getCharacters = () => {
     async function fetchCharacters() {
         try {
             const response = await fetch('https://rickandmortyapi.com/api/character');
@@ -17,6 +17,7 @@ const api = () => {
             for (let i = 0; i < characters.length; i++) {
                 let card = document.createElement('div');
                 card.classList.add('card');
+                card.setAttribute('id', `${characters[i].id}`);
                 card.innerHTML = `<img class="card_img" src="${characters[i].image}" alt="">
                 <div class="card_info">
                   <p class="name">${characters[i].name}</p>
@@ -27,4 +28,4 @@ const api = () => {
         });
 };
 
-export default api;
+export default getCharacters;
