@@ -90,6 +90,8 @@ body {
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
     border-radius: 4px;
     transition: transform 0.5s ease;
+    max-width: 240px;
+    min-height: 350px;
   }
   
   .card:hover {
@@ -114,13 +116,40 @@ body {
     margin: 0 0 1px 0;
   }
 
-  .race {
+  .status {
     font-style: normal;
     font-size: 14px;
     line-height: 21px;
     letter-spacing: 0.25px;
     color: rgba(0, 0, 0, 0.6);
     margin: 0;
+  }
+
+  .status_icon_alive{
+    height: 0.5rem;
+    width: 0.5rem;
+    margin-right: 0.375rem;
+    background: rgb(85, 204, 68);
+    border-radius: 50%;
+    display:inline-block;
+  }
+
+  .status_icon_dead{
+    height: 0.5rem;
+    width: 0.5rem;
+    margin-right: 0.375rem;
+    background: rgb(214, 61, 46);
+    border-radius: 50%;
+    display:inline-block;
+  }
+  
+  .status_icon_unknown{
+    height: 0.5rem;
+    width: 0.5rem;
+    margin-right: 0.375rem;
+    background: rgb(105, 104, 104);
+    border-radius: 50%;
+    display:inline-block;
   }
   
   /* profile */
@@ -173,6 +202,8 @@ body {
 
   .profile_img{
     margin-bottom: 16px;
+    border: 5px solid #F2F2F7;
+    border-radius: 150px;
   }
 
   .profile_name{
@@ -245,6 +276,7 @@ body {
 
       .card {
         width: 312px;
+        min-height: 350px;
       }
 
       .card_img {
