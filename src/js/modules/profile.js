@@ -2,7 +2,8 @@ const profile = () => {
     const main = document.querySelector('.main_page'),
           goBackBtn = document.querySelector('.profile_page_btn'),
           profilePage = document.querySelector('.profile_page'),
-          cards = document.querySelector('.cards');
+          cards = document.querySelector('.cards'),
+          profileBlock = document.querySelector('.profile');
 
           async function fetchCharacter(url) {
             try {
@@ -18,7 +19,6 @@ const profile = () => {
     cards.addEventListener('click', (e) => {
         const card = e.target.closest('.card');
         if (card) {
-            const profileBlock = document.querySelector('.profile');
             let urlCharacter = 'https://rickandmortyapi.com/api/character/' + card.id;
 
             fetchCharacter(urlCharacter).then(character => {
@@ -31,6 +31,15 @@ const profile = () => {
                     type = character.type;
                 }
 
+                let statusIcon;
+                if (character.status === 'Alive') {
+                    statusIcon = 'status_icon_alive';
+                } else if (character.status === 'Dead') {
+                    statusIcon = 'status_icon_dead';
+                } else {
+                    statusIcon = 'status_icon_unknown';
+                }
+
                 profileBlock.innerHTML = `
             <img class="profile_img" src="${character.image}" alt="profile_image">
             <p class="profile_name">${character.name}</p>
@@ -41,7 +50,7 @@ const profile = () => {
             </div>
             <div class="profile_container">
               <p class="profile_cont_mainText">Status</p>
-              <p class="profile_cont_secondText">${character.status}</p>
+              <p class="profile_cont_secondText"><span class="${statusIcon}"></span>${character.status}</p>
             </div>
             <div class="profile_container">
               <p class="profile_cont_mainText">Specie</p>
@@ -61,7 +70,6 @@ const profile = () => {
           </div>`;
             });
 
-
         main.style.display = 'none';
         profilePage.style.display = 'block';
         }
@@ -72,6 +80,7 @@ const profile = () => {
             setTimeout(() => {
                 main.style.display = '';
                 profilePage.style.display = 'none';
+                profileBlock.innerHTML = '';
             }, 150);
         });
     }
