@@ -39,19 +39,29 @@ class ElementCreator {
     }
 }
 
-const build = new ElementCreator();
+    const build = new ElementCreator();
 
-const mainPage = build.create('div')
-    .addClass('flex-container')
-    .addClass('main_page')
-    .appendTo(document.body);
+    const mainPage = build.create('div')
+        .addClass('flex-container')
+        .addClass('main_page')
+        .appendTo(document.body);
 
-const header = build.create('header')
-    .appendTo(document.querySelector('.main_page'));
+    const header = build.create('header')
+        .appendTo(document.querySelector('.main_page'));
 
-const mainImg = build.create('img')
-    .addClass('main_img')
-    .setAttribute({ src: './assets/img/PngItem_438051.png', alt: 'Rick & Morty' })
-    .appendTo(document.querySelector('header'));
+    const mainImg = build.create('img')
+        .addClass('main_img')
+        .setAttribute({ src: './assets/img/PngItem_438051.png', alt: 'Rick & Morty' })
+        .appendTo(document.querySelector('header'));
+
+        // searchBar
+
+    const cards = build.create('div')
+        .addClass('cards')
+        .appendTo(document.querySelector('.main_page'));
+
+    const profilePage = build.create('div')
+        .addClass('profile_page')
+        .appendTo(document.body);
 
 export default ElementCreator;
