@@ -18,4 +18,4 @@ class DataFetcher {
     }
 }
 
-module.exports = DataFetcher;
+export default DataFetcher;

@@ -1,24 +1,11 @@
-import { DataFetcher } from './getCharacters.js';
+import DataFetcher from './DataFetcher.js';
 
 const profile = () => {
-    getCharacters();
-
     const main = document.querySelector('.main_page'),
           goBackBtn = document.querySelector('.profile_page_btn'),
           profilePage = document.querySelector('.profile_page'),
           cards = document.querySelector('.cards'),
           profileBlock = document.querySelector('.profile');
-
-          async function fetchCharacter(url) {
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                const character = data;
-                return character;
-            } catch (error) {
-                console.log(error);
-            }
-        }
 
     cards.addEventListener('click', (e) => {
         const card = e.target.closest('.card');
@@ -28,8 +15,6 @@ const profile = () => {
             const fetchProfile = new DataFetcher(urlCharacter);
 
             fetchProfile.fetchData().then(character => {
-                console.log(character);
-
                 let type;
                 if (character.type === '') {
                     type = 'Unknown';
