@@ -1,4 +1,8 @@
+import { DataFetcher } from './getCharacters.js';
+
 const profile = () => {
+    getCharacters();
+
     const main = document.querySelector('.main_page'),
           goBackBtn = document.querySelector('.profile_page_btn'),
           profilePage = document.querySelector('.profile_page'),
@@ -21,7 +25,9 @@ const profile = () => {
         if (card) {
             let urlCharacter = 'https://rickandmortyapi.com/api/character/' + card.id;
 
-            fetchCharacter(urlCharacter).then(character => {
+            const fetchProfile = new DataFetcher(urlCharacter);
+
+            fetchProfile.fetchData().then(character => {
                 console.log(character);
 
                 let type;
