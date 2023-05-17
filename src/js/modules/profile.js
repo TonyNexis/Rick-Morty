@@ -4,28 +4,25 @@ import ElementCreator from './ElementCreator.js';
 const profile = () => {
       const build = new ElementCreator();
 
-
       const profilePage = build.create('div')
           .addClass('profile_page')
           .appendTo(document.body);
 
       const profilePageBtn = build.create('button')
           .addClass('profile_page_btn')
+          .setInnerHtml(`<svg class="arrow1" width="16" height="16" viewBox="0 0 16 16">
+          <path d="M16 7H3.83L9.42 1.41L8 0L0 8L8 16L9.41 14.59L3.83 9H16V7Z"/></path>
+          </svg><span>GO BACK</span>`)
           .appendTo(document.querySelector('.profile_page'));
 
       const arrowWrapper = build.create('span')
           .setAttribute({ id: 'arrowSpan' })
           .appendTo(document.querySelector('.profile_page_btn'));
 
-      const arrow = build.create('svg')
-          .addClass('arrow')
-          .setAttribute({ width: 16, height: 16, viewBox: '0 0 16 16' })
-          .setInnerHtml('<path d="M16 7H3.83L9.42 1.41L8 0L0 8L8 16L9.41 14.59L3.83 9H16V7Z"/>')
-          .appendTo(document.getElementById('arrowSpan'));
-
-      const goHome = build.create('span')
-          .setTextContent('GO HOME')
-          .appendTo(document.querySelector('.profile_page_btn'));
+      const profileWrapper = build.create('div')
+          .addClass('flex-container')
+          .addClass('profile')
+          .appendTo(document.querySelector('.profile_page'));
 
       const main = document.querySelector('.main_page'),
           goBackBtn = document.querySelector('.profile_page_btn'),
@@ -56,50 +53,53 @@ const profile = () => {
                     statusIcon = 'status_icon_unknown';
                 }
 
-
-
-
-          //       profileBlock.innerHTML = `
-          //   <img class="profile_img" src="${character.image}" alt="profile_image">
-          //   <p class="profile_name">${character.name}</p>
-          //   <p class="profile_info">Informations</p>
-          //   <div class="profile_container">
-          //     <p class="profile_cont_mainText">Gender</p>
-          //     <p class="profile_cont_secondText">${character.gender}</p>
-          //   </div>
-          //   <div class="profile_container">
-          //     <p class="profile_cont_mainText">Status</p>
-          //     <p class="profile_cont_secondText"><span class="${statusIcon}"></span>${character.status}</p>
-          //   </div>
-          //   <div class="profile_container">
-          //     <p class="profile_cont_mainText">Specie</p>
-          //     <p id="race" class="profile_cont_secondText">${character.species}</p>
-          //   </div>
-          //   <div class="profile_container">
-          //     <p class="profile_cont_mainText">Origin</p>
-          //     <p class="profile_cont_secondText">${character.origin.name}</p>
-          //   </div>
-          //   <div class="profile_container">
-          //     <p class="profile_cont_mainText">Type</p>
-          //     <p class="profile_cont_secondText">${type}</p>
-          //   </div>
-          //   <div class="profile_container">
-          //   <p class="profile_cont_mainText">Episodes</p>
-          //   <p class="profile_cont_secondText">${character.episode.length}</p>
-          // </div>`;
+                profilePage
+                    .setInnerHtml(`
+                       <img class="profile_img" src="${character.image}" alt="profile_image">
+                       <p class="profile_name">${character.name}</p>
+                       <p class="profile_info">Informations</p>
+                       <div class="profile_container">
+                         <p class="profile_cont_mainText">Gender</p>
+                         <p class="profile_cont_secondText">${character.gender}</p>
+                       </div>
+                       <div class="profile_container">
+                         <p class="profile_cont_mainText">Status</p>
+                         <p class="profile_cont_secondText"><span class="${statusIcon}"></span>${character.status}</p>
+                       </div>
+                       <div class="profile_container">
+                         <p class="profile_cont_mainText">Specie</p>
+                         <p id="race" class="profile_cont_secondText">${character.species}</p>
+                       </div>
+                       <div class="profile_container">
+                         <p class="profile_cont_mainText">Origin</p>
+                         <p class="profile_cont_secondText">${character.origin.name}</p>
+                       </div>
+                       <div class="profile_container">
+                         <p class="profile_cont_mainText">Type</p>
+                         <p class="profile_cont_secondText">${type}</p>
+                       </div>
+                       <div class="profile_container">
+                       <p class="profile_cont_mainText">Episodes</p>
+                       <p class="profile_cont_secondText">${character.episode.length}</p>
+                     </div>`)
+                     .appendTo(document.querySelector('.profile'));
             });
 
         main.style.display = 'none';
-        test.style.display = 'block';
+        // test.style.display = 'block';
+        profilePage
+            .setStyle('display', 'block');
         }
     });
 
     function goBack() {
+        const profileBlock = document.getElementById('profileBlock');
         goBackBtn.addEventListener('click', () => {
             setTimeout(() => {
                 main.style.display = '';
                 profilePage.style.display = 'none';
-                profileBlock.innerHTML = '';
+                console.log(profileBlock);
+                profileBlock.remove();
             }, 150);
         });
     }

@@ -15,6 +15,13 @@ class ElementCreator {
         return this;
     }
 
+    setStyle(property, value) {
+        if (this.element && property && value) {
+            this.element.style[property] = value;
+        }
+        return this;
+    }
+
     setAttribute(attributes) {
         if (this.element && attributes && typeof (attributes) === 'object') {
             for (const key in attributes) {
