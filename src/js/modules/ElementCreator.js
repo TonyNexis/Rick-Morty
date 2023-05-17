@@ -8,6 +8,11 @@ class ElementCreator {
         return this;
     }
 
+    createSvg() {
+        this.element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        return this;
+    }
+
     addClass(className) {
         if (this.element && className) {
             this.element.classList.add(className);

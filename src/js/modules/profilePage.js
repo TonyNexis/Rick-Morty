@@ -10,14 +10,10 @@ const profile = () => {
 
       const profilePageBtn = build.create('button')
           .addClass('profile_page_btn')
-          .setInnerHtml(`<svg class="arrow1" width="16" height="16" viewBox="0 0 16 16">
+          .setInnerHtml(`<svg class="arrow" width="16" height="16" viewBox="0 0 16 16">
           <path d="M16 7H3.83L9.42 1.41L8 0L0 8L8 16L9.41 14.59L3.83 9H16V7Z"/></path>
           </svg><span>GO BACK</span>`)
           .appendTo(document.querySelector('.profile_page'));
-
-      const arrowWrapper = build.create('span')
-          .setAttribute({ id: 'arrowSpan' })
-          .appendTo(document.querySelector('.profile_page_btn'));
 
       const profileWrapper = build.create('div')
           .addClass('flex-container')
@@ -27,7 +23,7 @@ const profile = () => {
       const main = document.querySelector('.main_page'),
           goBackBtn = document.querySelector('.profile_page_btn'),
           cards = document.querySelector('.cards'),
-          test = document.querySelector('.profile_page');
+          profileCard = document.querySelector('.profile_page');
 
     cards.addEventListener('click', (e) => {
         const card = e.target.closest('.card');
@@ -53,7 +49,7 @@ const profile = () => {
                     statusIcon = 'status_icon_unknown';
                 }
 
-                profilePage
+                profileWrapper
                     .setInnerHtml(`
                        <img class="profile_img" src="${character.image}" alt="profile_image">
                        <p class="profile_name">${character.name}</p>
@@ -81,14 +77,14 @@ const profile = () => {
                        <div class="profile_container">
                        <p class="profile_cont_mainText">Episodes</p>
                        <p class="profile_cont_secondText">${character.episode.length}</p>
-                     </div>`)
-                     .appendTo(document.querySelector('.profile'));
+                     </div>`);
             });
 
         main.style.display = 'none';
-        // test.style.display = 'block';
-        profilePage
-            .setStyle('display', 'block');
+        profileCard.style.display = 'block';
+        // console.log(profilePage);
+        // profilePage
+        //     .setStyle('display', 'block');
         }
     });
 
@@ -97,9 +93,8 @@ const profile = () => {
         goBackBtn.addEventListener('click', () => {
             setTimeout(() => {
                 main.style.display = '';
-                profilePage.style.display = 'none';
-                console.log(profileBlock);
-                profileBlock.remove();
+                profileCard.style.display = 'none';
+                document.querySelector('.profile').innerHTML = '';
             }, 150);
         });
     }
