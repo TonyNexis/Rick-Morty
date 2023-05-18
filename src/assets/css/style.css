@@ -206,6 +206,7 @@ body {
     margin-bottom: 16px;
     border: 5px solid #F2F2F7;
     border-radius: 150px;
+    
   }
 
   .profile_name{
@@ -214,6 +215,7 @@ body {
     font-size: 48px;
     line-height: 56px;
     color: #081F32;
+    text-align: center;
   }
 
   .profile_info{
@@ -224,13 +226,14 @@ body {
     letter-spacing: 0.15px;
     margin: 0;
     margin-bottom: 48px;
+    text-align: center;
   }
 
   .profile_container{
     border-bottom: 1px solid rgba(33, 33, 33, 0.08);
     width: 394.64px;
     padding: 9px 0 12px 0px;
-    margin-left: 40px;
+    /* margin-left: 40px; */
   }
 
   .profile_cont_mainText{

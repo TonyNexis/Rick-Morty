@@ -1,18 +1,10 @@
-const getCharacters = () => {
-    async function fetchCharacters() {
-        try {
-            const response = await fetch('https://rickandmortyapi.com/api/character');
-            const data = await response.json();
-            const characters = data.results;
-            console.log(characters);
-            return characters;
-        } catch (error) {
-            console.log(error);
-        }
-    }
+import DataFetcher from './DataFetcher.js';
 
-        fetchCharacters().then(characters => {
-            // console.log(characters[0].name);
+const getCharacters = () => {
+    const fetchCharacters = new DataFetcher('https://rickandmortyapi.com/api/character');
+
+        fetchCharacters.fetchData().then(data => {
+            const characters = data.results;
             const cards = document.querySelector('.cards');
             for (let i = 0; i < characters.length; i++) {
                 let card = document.createElement('div');
