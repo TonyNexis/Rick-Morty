@@ -3,7 +3,7 @@ class ElementCreator {
         this.element = null;
     }
 
-    create(tagName) {
+   create(tagName) {
         this.element = document.createElement(tagName);
         return this;
     }

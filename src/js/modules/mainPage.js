@@ -6,6 +6,7 @@ const mainPage = () => {
     const mainPageWrapper = build.create('div')
         .addClass('flex-container')
         .addClass('main_page')
+        .addClass('hide')
         .appendTo(document.body);
 
     const header = build.create('header')

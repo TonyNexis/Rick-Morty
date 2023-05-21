@@ -1,4 +1,4 @@
-import DataFetcher from './DataFetcher.js';
+import FetchAPI from './FetchAPI.js';
 import ElementCreator from './ElementCreator.js';
 
 const profile = () => {
@@ -30,9 +30,7 @@ const profile = () => {
         if (card) {
             let urlCharacter = 'https://rickandmortyapi.com/api/character/' + card.id;
 
-            const fetchProfile = new DataFetcher(urlCharacter);
-
-            fetchProfile.fetchData().then(character => {
+            FetchAPI.get(urlCharacter).then(character => {
                 let type;
                 if (character.type === '') {
                     type = 'Unknown';

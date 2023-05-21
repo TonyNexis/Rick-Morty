@@ -1,5 +1,5 @@
 import ElementCreator from './ElementCreator.js';
-import DataFetcher from './DataFetcher.js';
+import FetchAPI from './FetchAPI.js';
 
 const loginPage = () => {
     const build = new ElementCreator();
@@ -25,12 +25,12 @@ const loginPage = () => {
     const loginText = build.create('p')
         .addClass('loginText')
         .setTextContent('Login:')
-        .appendTo(document.querySelector('form'));
+        .appendTo(document.querySelector('.loginFormWrapper'));
 
     const loginBlock = build.create('div')
         .addClass('inputBlock')
         .setAttribute({ id: 'loginBlock' })
-        .appendTo(document.querySelector('form'));
+        .appendTo(document.querySelector('.loginFormWrapper'));
 
     const loginInput = build.create('input')
         .addClass('inputWindow')
@@ -40,12 +40,12 @@ const loginPage = () => {
     const passwordText = build.create('p')
         .addClass('loginText')
         .setTextContent('Password:')
-        .appendTo(document.querySelector('form'));
+        .appendTo(document.querySelector('.loginFormWrapper'));
 
     const passwordBlock = build.create('div')
         .addClass('inputBlock')
         .setAttribute({ id: 'passwordBlock' })
-        .appendTo(document.querySelector('form'));
+        .appendTo(document.querySelector('.loginFormWrapper'));
 
     const passwordInput = build.create('input')
         .addClass('inputWindow')
@@ -55,22 +55,79 @@ const loginPage = () => {
     const btnForm = build.create('button')
         .addClass('btnForm')
         .setTextContent('Lets start')
-        .appendTo(document.querySelector('form'));
+        .appendTo(document.querySelector('.loginFormWrapper'));
 
     const registrationUrl = build.create('a')
-        .setAttribute({ id: 'regUrl' })
+        .setAttribute({ id: 'regUrl', href: '' })
         .setTextContent('Registration')
         .appendTo(document.querySelector('.login_form'));
 
     const buttonLogin = document.querySelector('.btnForm'),
-          loginFormWrapWrap = document.querySelector('.loginFormWrapper');
+          loginFormWrapWrap = document.querySelector('.loginFormWrapper'),
+          regUrl = document.querySelector('#regUrl');
 
-    loginFormWrapWrap.addEventListener('submit', (e) => {
+    regUrl.addEventListener('click', (e) => {
         e.preventDefault();
 
-        const loginFormData = new FormData(loginFormWrapWrap);
+        document.querySelector('.login_page').classList.add('hide');
+        document.querySelector('.reg_page').classList.remove('hide');
 
-        console.log(loginFormData);
+        loginFormWrapWrap.reset();
+    });
+
+    buttonLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        if (document.querySelector('.regMessageError')) {
+            document.querySelector('.regMessageError').remove();
+        }
+
+        const userData = JSON.parse(localStorage.getItem('userData')),
+              loginFormData = new FormData(loginFormWrapWrap),
+              login = loginFormData.get('login'),
+              password = loginFormData.get('password');
+
+        if (userData && userData.login === login && userData.password === password) {
+            document.querySelector('.login_page').classList.add('hide');
+            document.querySelector('.main_page').classList.remove('hide');
+
+            localStorage.setItem('login', true);
+          } else {
+            build.create('p')
+            .addClass('regMessageError')
+            .setTextContent('Wrong login or password')
+            .appendTo(loginFormWrapWrap);
+
+            document.querySelector('#loginBlock').animate(
+                [
+                  { transform: 'translateX(0)' },
+                  { transform: 'translateX(5px)' },
+                  { transform: 'translateX(-5px)' },
+                  { transform: 'translateX(2.5px)' },
+                  { transform: 'translateX(-2.5px)' },
+                  { transform: 'translateX(0)' },
+                ],
+                {
+                  duration: 200,
+                  iterations: 2,
+                },
+              );
+
+              document.querySelector('#passwordBlock').animate(
+                [
+                  { transform: 'translateX(0)' },
+                  { transform: 'translateX(5px)' },
+                  { transform: 'translateX(-5px)' },
+                  { transform: 'translateX(2.5px)' },
+                  { transform: 'translateX(-2.5px)' },
+                  { transform: 'translateX(0)' },
+                ],
+                {
+                  duration: 200,
+                  iterations: 2,
+                },
+              );
+          }
     });
 };
 

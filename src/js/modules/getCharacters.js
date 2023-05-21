@@ -1,9 +1,7 @@
-import DataFetcher from './DataFetcher.js';
+import FetchAPI from './FetchAPI.js';
 
 const getCharacters = () => {
-    const fetchCharacters = new DataFetcher('https://rickandmortyapi.com/api/character');
-
-        fetchCharacters.fetchData().then(data => {
+    FetchAPI.get('https://rickandmortyapi.com/api/character').then(data => {
             const characters = data.results;
             const cards = document.querySelector('.cards');
             for (let i = 0; i < characters.length; i++) {

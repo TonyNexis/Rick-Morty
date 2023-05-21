@@ -92,13 +92,106 @@ body {
   letter-spacing: 2px;
   font-size: 18px;
   padding: 5px;
+  color: black;
+}
+
+/* REG PAGE */
+
+.reg_form {
+  margin-top: 86px;
+  width: 400px;
+  height: 500px;
+  border-radius: 50px;
+  /* box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14); */
+  text-align: center;
+  transition: box-shadow 0.7s ease;
+
+}
+
+.reg_form:focus-within {
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+}
+
+.regText {
+margin: 0 0 10px 0;
+font-size: 18px;
+}
+
+.reginputBlock {
+margin: 0 0 20px 0;
+}
+
+.reginputWindow {
+width: 220px;
+font-size: 16px;
+/* text-align: center; */
+padding: 5px 10px;
+border: 0;
+box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+border-radius: 20px;
+}
+
+.reginputWindow:focus {
+outline: none;
+}
+
+.flex-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.reg_header {
+font-size: 25px;
+letter-spacing: 1px;
+font-weight: 500;
+margin: 40px 0 ;
+text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+}
+
+#regpasswordBlock {
+margin-bottom: 40px;
+}
+
+.regFormWrapper {
+height: 250px;
+margin-bottom: 40px;
+}
+
+.regbtnForm{
+padding: 5px 20px 5px 20px;
+font-size: 15px;
+letter-spacing: 1px;
+box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+border-radius: 20px;
+border: 0;
+}
+
+.regbtnForm:active {
+/* background-color: red; */
+position: relative;
+left: -3px;
+top: 2px;
+}
+
+#loginUrl {
+letter-spacing: 2px;
+font-size: 18px;
+padding: 5px;
+color: black;
+}
+
+.regMessageError {
+  color: red;
+}
+
+.regMessageOk {
+  color: rgb(9, 46, 167);
 }
 
 /* MAIN PAGE */
-
-.main_page {
-  display: none;
-}
 
 .main_img {
     max-width: 100%;
@@ -336,6 +429,14 @@ body {
     letter-spacing: 0.25px;
     color: #6E798C;
     margin: 0;
+  }
+
+  .show {
+    display: block;
+  }
+  
+  .hide {
+    display: none;
   }
 
   /* media */
