@@ -39,6 +39,16 @@ const mainPage = () => {
     const cards = build.create('div')
         .addClass('cards')
         .appendTo(document.querySelector('.main_page'));
+
+    const login = localStorage.getItem('login'),
+          userDataObj = localStorage.getItem('UserData'),
+          userData = JSON.parse(userDataObj);
+
+          console.log(userData);
+
+    // const user = build.create('div')
+    //     .setTextContent(`Hello, ${userName.login}`)
+    //     .appendTo('.header');
 };
 
 export default mainPage;
