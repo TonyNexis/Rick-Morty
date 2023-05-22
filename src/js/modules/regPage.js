@@ -50,6 +50,19 @@ const regPage = () => {
         }
     });
 
+    const passwordToggle = document.querySelector('.imgPasswordSwitcher'),
+          passwordInput = document.querySelector('#passwordinputWindow');
+
+    passwordToggle.addEventListener('click', () => {
+        if (passwordInput.getAttribute('type') === 'password') {
+            passwordToggle.src = './assets/img/eye-outline.svg';
+            passwordInput.setAttribute('type', 'text');
+        } else {
+            passwordToggle.src = './assets/img/eye-off-outline.svg';
+            passwordInput.setAttribute('type', 'password');
+        }
+    });
+
     function regMessage(msgClass, text, selector) {
         build.create('p')
             .addClass(msgClass)

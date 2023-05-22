@@ -9,6 +9,24 @@ const mainPage = () => {
         .addClass('hide')
         .appendTo(document.body);
 
+    const login = localStorage.getItem('login'),
+          userDataObj = JSON.parse(localStorage.getItem('userData'));
+
+    const userBlock = build.create('div')
+         .setAttribute({ id: 'userBlock' })
+         .appendTo(document.querySelector('.main_page'));
+
+    const user = build.create('span')
+        .addClass('user')
+        .setTextContent(`Hello, ${userDataObj.login}`)
+        .appendTo(document.querySelector('#userBlock'));
+
+    const logoutUrl = build.create('a')
+        .addClass('user')
+        .setAttribute({ id: 'logoutUrl', href: '' })
+        .setTextContent('(Logout)')
+        .appendTo(document.querySelector('#userBlock'));
+
     const header = build.create('header')
         .appendTo(document.querySelector('.main_page'));
 
@@ -40,15 +58,9 @@ const mainPage = () => {
         .addClass('cards')
         .appendTo(document.querySelector('.main_page'));
 
-    const login = localStorage.getItem('login'),
-          userDataObj = localStorage.getItem('UserData'),
-          userData = JSON.parse(userDataObj);
-
-          console.log(userData);
-
-    // const user = build.create('div')
-    //     .setTextContent(`Hello, ${userName.login}`)
-    //     .appendTo('.header');
+        document.querySelector('#logoutUrl').addEventListener('click', (e) => {
+            localStorage.setItem('login', false);
+        });
 };
 
 export default mainPage;

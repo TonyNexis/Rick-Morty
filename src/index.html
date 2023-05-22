@@ -5,14 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Characters</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Karla" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
-    <div class="flex-container reg_page hide"><div class="reg_form"><p class="reg_header">Create your account</p><form class="regFormWrapper"><p class="regText">Login:</p><div class="reginputBlock" id="regloginBlock"><input class="reginputWindow" placeholder="Your login..." type="text" name="login"></div><p class="regText">Password:</p><div class="reginputBlock" id="regpasswordBlock"><input class="reginputWindow" placeholder="Your password..." type="password" name="password"></div><button class="regbtnForm">Registration</button></form><a id="loginUrl" href="">Go back</a></div></div>
+    <div class="flex-container reg_page hide">
+      <div class="reg_form">
+        <p class="reg_header">Create your account</p>
+        <form class="regFormWrapper">
+          <p class="regText">Login:</p>
+          <div class="reginputBlock" id="regloginBlock">
+            <input
+              class="reginputWindow"
+              placeholder="Your login..."
+              type="text"
+              name="login"
+            />
+          </div>
+          <p class="regText">Password:</p>
+          <div class="reginputBlock" id="regpasswordBlock">
+            <input
+              class="reginputWindow"
+              id="passwordinputWindow"
+              placeholder="Your password..."
+              type="password"
+              name="password"
+            />
+            <img class="imgPasswordSwitcher" src="./assets/img/eye-off-outline.svg" alt="">
+          </div>
+          <button class="regbtnForm">Registration</button>
+        </form>
+        <a id="loginUrl" href="">Go back</a>
+      </div>
+    </div>
     <!-- <script src="../dist/bundle.js"></script> -->
     <script type="module" src="./js/script.js"></script>
   </body>
 </html>
-

@@ -16,5 +16,8 @@ regPage();
 if (localStorage.getItem('login') === 'true') {
     document.querySelector('.login_page').classList.add('hide');
     document.querySelector('.main_page').classList.remove('hide');
+} else {
+    document.querySelector('.main_page').classList.add('hide');
+    document.querySelector('.login_page').classList.remove('hide');
 }
 });

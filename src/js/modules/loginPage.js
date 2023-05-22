@@ -49,7 +49,12 @@ const loginPage = () => {
 
     const passwordInput = build.create('input')
         .addClass('inputWindow')
-        .setAttribute({ placeholder: 'Your password...', type: 'password', name: 'password' })
+        .setAttribute({ id: 'loginPasswordInput', placeholder: 'Your password...', type: 'password', name: 'password' })
+        .appendTo(document.querySelector('#passwordBlock'));
+
+    const passwordSwitcher = build.create('img')
+        .addClass('imgPasswordSwitcher')
+        .setAttribute({ id: 'imgSwitcher', src: './assets/img/eye-off-outline.svg' })
         .appendTo(document.querySelector('#passwordBlock'));
 
     const btnForm = build.create('button')
@@ -65,6 +70,19 @@ const loginPage = () => {
     const buttonLogin = document.querySelector('.btnForm'),
           loginFormWrapWrap = document.querySelector('.loginFormWrapper'),
           regUrl = document.querySelector('#regUrl');
+
+    const passwordToggle = document.querySelector('#imgSwitcher'),
+          loginPasswordInput = document.querySelector('#loginPasswordInput');
+
+        passwordToggle.addEventListener('click', () => {
+        if (loginPasswordInput.getAttribute('type') === 'password') {
+            passwordToggle.src = './assets/img/eye-outline.svg';
+            loginPasswordInput.setAttribute('type', 'text');
+        } else {
+            passwordToggle.src = './assets/img/eye-off-outline.svg';
+            loginPasswordInput.setAttribute('type', 'password');
+        }
+    });
 
     regUrl.addEventListener('click', (e) => {
         e.preventDefault();
