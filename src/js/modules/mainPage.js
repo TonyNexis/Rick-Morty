@@ -6,7 +6,26 @@ const mainPage = () => {
     const mainPageWrapper = build.create('div')
         .addClass('flex-container')
         .addClass('main_page')
+        .addClass('hide')
         .appendTo(document.body);
+
+    const login = localStorage.getItem('login'),
+          userDataObj = JSON.parse(localStorage.getItem('userData'));
+
+    const userBlock = build.create('div')
+         .setAttribute({ id: 'userBlock' })
+         .appendTo(document.querySelector('.main_page'));
+
+    const user = build.create('span')
+        .addClass('user')
+        .setTextContent(`Hello, ${userDataObj.login}`)
+        .appendTo(document.querySelector('#userBlock'));
+
+    const logoutUrl = build.create('a')
+        .addClass('user')
+        .setAttribute({ id: 'logoutUrl', href: '' })
+        .setTextContent('(Logout)')
+        .appendTo(document.querySelector('#userBlock'));
 
     const header = build.create('header')
         .appendTo(document.querySelector('.main_page'));
@@ -38,6 +57,10 @@ const mainPage = () => {
     const cards = build.create('div')
         .addClass('cards')
         .appendTo(document.querySelector('.main_page'));
+
+        document.querySelector('#logoutUrl').addEventListener('click', (e) => {
+            localStorage.setItem('login', false);
+        });
 };
 
 export default mainPage;
