@@ -1,6 +1,8 @@
 import FetchAPI from './FetchAPI.js';
 import ElementCreator from './ElementCreator.js';
 import Validation from './Validation.js';
+import ErrorAnimation from './ErrorAnimation.js';
+import ErrorMessage from './ErrorMessage.js'
 
 const regPage = () => {
     const loginUrl = document.querySelector('#loginUrl'),
@@ -32,23 +34,23 @@ const regPage = () => {
         }
 
         if (!Validation.isNotEmpty(userData.login)) {
-            Validation.message('regMessageError', 'Please enter the desired login', regForm);
-            Validation.animation('#regloginBlock');
-        } else if (Validation.isTooLong(userData.login)) {
-            Validation.message('regMessageError', 'Your login is too long', regForm);
-            Validation.animation('#regloginBlock');
-        } else if (Validation.isTooLong(userData.password) || Validation.isTooShort(userData.password)) {
-            Validation.message('regMessageError', 'Password length should be between 5 and 20 characters', regForm);
-            Validation.animation('#regpasswordBlock');
+            ErrorMessage.message('regMessageError', 'Please enter the desired login', regForm);
+            ErrorAnimation.animation('#regloginBlock');
+        } else if (Validation.isTooLong(userData.login, 20)) {
+            ErrorMessage.message('regMessageError', 'Your login is too long', regForm);
+            ErrorAnimation.animation('#regloginBlock');
+        } else if (Validation.isTooLong(userData.password, 20) || Validation.isTooShort(userData.password, 5)) {
+            ErrorMessage.message('regMessageError', 'Password length should be between 5 and 20 characters', regForm);
+            ErrorAnimation.animation('#regpasswordBlock');
         } else if (!Validation.hasNoNumbers(userData.password)) {
-            Validation.message('regMessageError', 'Password should contain at least one number', regForm);
-            Validation.animation('#regpasswordBlock');
+            ErrorMessage.message('regMessageError', 'Password should contain at least one number', regForm);
+            ErrorAnimation.animation('#regpasswordBlock');
         } else if (!Validation.hasNoLetters(userData.password)) {
-            Validation.message('regMessageError', 'Password should contain at least one letter', regForm);
-            Validation.animation('#regpasswordBlock');
+            ErrorMessage.message('regMessageError', 'Password should contain at least one letter', regForm);
+            ErrorAnimation.animation('#regpasswordBlock');
         } else {
                 localStorage.setItem('userData', JSON.stringify(userData));
-                Validation.message('regMessageOk', 'Registration successful', regForm);
+                ErrorMessage.message('regMessageOk', 'Registration successful', regForm);
                 setTimeout(() => {
                     regastrationPage.classList.add('hide');
                     loginPage.classList.remove('hide');

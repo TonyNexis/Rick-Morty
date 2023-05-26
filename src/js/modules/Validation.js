@@ -7,14 +7,12 @@ export default class Validation {
         return value.trim() !== '';
     }
 
-    static isTooLong(value) {
-        const length = value.length > 20;
-        return length;
+    static isTooLong(value, num) {
+        return value.length > num;
     }
 
-    static isTooShort(value) {
-        const length = value.length < 5;
-        return length;
+    static isTooShort(value, num) {
+        return value.length < num;
     }
 
     static hasNoNumbers(value) {
@@ -25,29 +23,5 @@ export default class Validation {
     static hasNoLetters(value) {
         const numberCheck = /[a-zA-Z]/;
         return numberCheck.test(value);
-    }
-
-    static message(msgClass, text, parentSelector) {
-        build.create('p')
-        .addClass(msgClass)
-        .setTextContent(text)
-        .appendTo(parentSelector);
-    }
-
-    static animation(selector) {
-        document.querySelector(selector).animate(
-            [
-              { transform: 'translateX(0)' },
-              { transform: 'translateX(5px)' },
-              { transform: 'translateX(-5px)' },
-              { transform: 'translateX(2.5px)' },
-              { transform: 'translateX(-2.5px)' },
-              { transform: 'translateX(0)' },
-            ],
-            {
-              duration: 200,
-              iterations: 2,
-            },
-          );
     }
 }

@@ -1,6 +1,8 @@
 import ElementCreator from './ElementCreator.js';
 import FetchAPI from './FetchAPI.js';
 import Validation from './Validation.js';
+import ErrorAnimation from './ErrorAnimation.js';
+import ErrorMessage from './ErrorMessage.js';
 
 const loginPage = () => {
     const build = new ElementCreator();
@@ -112,9 +114,9 @@ const loginPage = () => {
 
             localStorage.setItem('login', true);
           } else {
-            Validation.message('regMessageError', 'Wrong login or password', loginFormWrapWrap);
-            Validation.animation('#loginBlock');
-            Validation.animation('#passwordBlock');
+            ErrorMessage.message('regMessageError', 'Wrong login or password', loginFormWrapWrap);
+            ErrorAnimation.animation('#loginBlock');
+            ErrorAnimation.animation('#passwordBlock');
           }
     });
 };
