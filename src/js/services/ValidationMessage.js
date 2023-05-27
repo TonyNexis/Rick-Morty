@@ -1,8 +1,8 @@
-import ElementCreator from './ElementCreator.js';
+import ElementCreator from '../services/ElementCreator.js';
 
 const build = new ElementCreator();
 
-export default class ErrorMessage {
+export default class ValidationMessage {
     static message(msgClass, text, parentSelector) {
         build.create('p')
         .addClass(msgClass)

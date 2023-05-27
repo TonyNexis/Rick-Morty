@@ -1,4 +1,4 @@
-export default class ErrorAnimation {
+export default class ValidationAnimation {
     static animation(selector) {
         document.querySelector(selector).animate(
             [

@@ -1,75 +1,81 @@
-import FetchAPI from './FetchAPI.js';
-import ElementCreator from './ElementCreator.js';
-import Validation from './Validation.js';
-import ErrorAnimation from './ErrorAnimation.js';
-import ErrorMessage from './ErrorMessage.js'
+/* eslint-disable import/extensions */
+/* eslint-disable max-len */
+// import FetchAPI from '../services/FetchAPI.js';
+import ElementCreator from '../services/ElementCreator.js';
+import Validation from '../services/Validation.js';
+import ValidationAnimation from '../services/ValidationAnimation.js';
+import ValidationMessage from '../services/ValidationMessage.js';
 
-const regPage = () => {
-    const loginUrl = document.querySelector('#loginUrl'),
-          loginPage = document.querySelector('.login_page'),
-          regastrationPage = document.querySelector('.reg_page'),
-          regForm = document.querySelector('.regFormWrapper'),
-          regBtn = document.querySelector('.regbtnForm'),
-          build = new ElementCreator();
+export default class RegPage {
+    constructor() {
+        this.loginUrl = document.querySelector('#loginUrl');
+        this.loginPage = document.querySelector('.login_page');
+        this.registrationPage = document.querySelector('.reg_page');
+        this.regForm = document.querySelector('.regFormWrapper');
+        this.regBtn = document.querySelector('.regbtnForm');
+        this.build = new ElementCreator();
 
-        loginUrl.addEventListener('click', (e) => {
-        e.preventDefault();
-        regastrationPage.classList.add('hide');
-        loginPage.classList.remove('hide');
+        this.initEventListeners();
+    }
 
-        if (document.querySelector('.regMessageError')) {
-            document.querySelector('.regMessageError').remove();
-        }
+    initEventListeners() {
+        this.loginUrl.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.regastrationPage.classList.add('hide');
+            this.loginPage.classList.remove('hide');
 
-        regForm.reset();
-    });
+            if (document.querySelector('.regMessageError')) {
+                document.querySelector('.regMessageError').remove();
+            }
 
-    regBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+            this.regForm.reset();
+        });
 
-        const userData = Object.fromEntries(new FormData(regForm));
+        this.regBtn.addEventListener('click', (e) => {
+            e.preventDefault();
 
-        if (document.querySelector('.regMessageError')) {
-            document.querySelector('.regMessageError').remove();
-        }
+            const userData = Object.fromEntries(new FormData(this.regForm));
 
-        if (!Validation.isNotEmpty(userData.login)) {
-            ErrorMessage.message('regMessageError', 'Please enter the desired login', regForm);
-            ErrorAnimation.animation('#regloginBlock');
-        } else if (Validation.isTooLong(userData.login, 20)) {
-            ErrorMessage.message('regMessageError', 'Your login is too long', regForm);
-            ErrorAnimation.animation('#regloginBlock');
-        } else if (Validation.isTooLong(userData.password, 20) || Validation.isTooShort(userData.password, 5)) {
-            ErrorMessage.message('regMessageError', 'Password length should be between 5 and 20 characters', regForm);
-            ErrorAnimation.animation('#regpasswordBlock');
-        } else if (!Validation.hasNoNumbers(userData.password)) {
-            ErrorMessage.message('regMessageError', 'Password should contain at least one number', regForm);
-            ErrorAnimation.animation('#regpasswordBlock');
-        } else if (!Validation.hasNoLetters(userData.password)) {
-            ErrorMessage.message('regMessageError', 'Password should contain at least one letter', regForm);
-            ErrorAnimation.animation('#regpasswordBlock');
-        } else {
-                localStorage.setItem('userData', JSON.stringify(userData));
-                ErrorMessage.message('regMessageOk', 'Registration successful', regForm);
-                setTimeout(() => {
-                    regastrationPage.classList.add('hide');
-                    loginPage.classList.remove('hide');
-                }, 1000);
-        }
-    });
+            if (document.querySelector('.regMessageError')) {
+                document.querySelector('.regMessageError').remove();
+            }
 
-    const passwordToggle = document.querySelector('.imgPasswordSwitcher'),
-          passwordInput = document.querySelector('#passwordinputWindow');
+            if (!Validation.isNotEmpty(userData.login)) {
+                ValidationMessage.message('regMessageError', 'Please enter the desired login', this.regForm);
+                ValidationAnimation.animation('#regloginBlock');
+            } else if (Validation.isTooLong(userData.login, 20)) {
+                ValidationMessage.message('regMessageError', 'Your login is too long', this.regForm);
+                ValidationAnimation.animation('#regloginBlock');
+            } else if (Validation.isTooLong(userData.password, 20) || Validation.isTooShort(userData.password, 5)) {
+                ValidationMessage.message('regMessageError', 'Password length should be between 5 and 20 characters', this.regForm);
+                ValidationAnimation.animation('#regpasswordBlock');
+            } else if (!Validation.hasNoNumbers(userData.password)) {
+                ValidationMessage.message('regMessageError', 'Password should contain at least one number', this.regForm);
+                ValidationAnimation.animation('#regpasswordBlock');
+            } else if (!Validation.hasNoLetters(userData.password)) {
+                ValidationMessage.message('regMessageError', 'Password should contain at least one letter', this.regForm);
+                ValidationAnimation.animation('#regpasswordBlock');
+            } else {
+                    localStorage.setItem('userData', JSON.stringify(userData));
+                    ValidationMessage.message('regMessageOk', 'Registration successful', this.regForm);
+                    setTimeout(() => {
+                        this.registrationPage.classList.add('hide');
+                        this.loginPage.classList.remove('hide');
+                    }, 1000);
+            }
+        });
 
-    passwordToggle.addEventListener('click', () => {
-        if (passwordInput.getAttribute('type') === 'password') {
-            passwordToggle.src = './assets/img/eye-outline.svg';
-            passwordInput.setAttribute('type', 'text');
-        } else {
-            passwordToggle.src = './assets/img/eye-off-outline.svg';
-            passwordInput.setAttribute('type', 'password');
-        }
-    });
-};
+        this.passwordToggle = document.querySelector('.imgPasswordSwitcher');
+        this.passwordInput = document.querySelector('#passwordinputWindow');
 
-export default regPage;
+        this.passwordToggle.addEventListener('click', () => {
+            if (this.passwordInput.getAttribute('type') === 'password') {
+                this.passwordToggle.src = './assets/img/eye-outline.svg';
+                this.passwordInput.setAttribute('type', 'text');
+            } else {
+                this.passwordToggle.src = './assets/img/eye-off-outline.svg';
+                this.passwordInput.setAttribute('type', 'password');
+            }
+        });
+    }
+}

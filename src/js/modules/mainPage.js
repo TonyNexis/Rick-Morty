@@ -1,4 +1,5 @@
-import ElementCreator from './ElementCreator.js';
+import ElementCreator from '../services/ElementCreator.js';
+import ProfileFilter from '../services/ProfileFilter.js';
 
 const mainPage = () => {
     const build = new ElementCreator();
@@ -51,7 +52,9 @@ const mainPage = () => {
 
     const searchInput = build.create('input')
         .addClass('search_input')
-        .setAttribute({ id: 'name-filter', placeholder: 'Filter by name...', type: 'text', name: 'filter' })
+        .setAttribute({
+ id: 'name-filter', placeholder: 'Filter by name...', type: 'text', name: 'filter',
+})
         .appendTo(document.querySelector('.search_bar'));
 
     const cards = build.create('div')
@@ -61,6 +64,9 @@ const mainPage = () => {
         document.querySelector('#logoutUrl').addEventListener('click', (e) => {
             localStorage.setItem('login', false);
         });
+
+    const test = new ProfileFilter()
+        .search();
 };
 
 export default mainPage;
