@@ -1,5 +1,5 @@
-import FetchAPI from '../services/FetchAPI.js';
-import ElementCreator from '../services/ElementCreator.js';
+import FetchAPI from './FetchAPI.js';
+import ElementCreator from './ElementCreator.js';
 
 const profile = () => {
       const build = new ElementCreator();
@@ -28,7 +28,7 @@ const profile = () => {
     cards.addEventListener('click', (e) => {
         const card = e.target.closest('.card');
         if (card) {
-            let urlCharacter = `https://rickandmortyapi.com/api/character/${card.id}`;
+            let urlCharacter = 'https://rickandmortyapi.com/api/character/' + card.id;
 
             FetchAPI.get(urlCharacter).then(character => {
                 let type;
@@ -80,6 +80,9 @@ const profile = () => {
 
         main.style.display = 'none';
         profileCard.style.display = 'block';
+        // console.log(profilePage);
+        // profilePage
+        //     .setStyle('display', 'block');
         }
     });
 

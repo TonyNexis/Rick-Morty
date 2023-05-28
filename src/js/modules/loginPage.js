@@ -1,131 +1,152 @@
-/* eslint-disable import/extensions */
-import ElementCreator from '../services/ElementCreator.js';
-// import FetchAPI from './FetchAPI.js';
-import ValidationAnimation from '../services/ValidationAnimation.js';
-import ValidationMessage from '../services/ValidationMessage.js';
+import ElementCreator from './ElementCreator.js';
+import FetchAPI from './FetchAPI.js';
 
-export default class LoginPage {
-    constructor() {
-        this.build = new ElementCreator();
-    }
+const loginPage = () => {
+    const build = new ElementCreator();
 
-    createPage() {
-        const loginWrapper = this.build.create('div')
-            .addClass('flex-container')
-            .addClass('login_page')
-            .appendTo(document.body);
+    const loginWrapper = build.create('div')
+        .addClass('flex-container')
+        .addClass('login_page')
+        .appendTo(document.body);
 
-        const loginForm = this.build.create('div')
-            .addClass('login_form')
-            .appendTo(document.querySelector('.login_page'));
+    const loginForm = build.create('div')
+        .addClass('login_form')
+        .appendTo(document.querySelector('.login_page'));
 
-        const helloText = this.build.create('p')
-            .addClass('login_header')
-            .setTextContent('Hello! You need to login')
-            .appendTo(document.querySelector('.login_form'));
+    const helloText = build.create('p')
+        .addClass('login_header')
+        .setTextContent('Hello! You need to login')
+        .appendTo(document.querySelector('.login_form'));
 
-        const form = this.build.create('form')
-            .addClass('loginFormWrapper')
-            .appendTo(document.querySelector('.login_form'));
+    const form = build.create('form')
+        .addClass('loginFormWrapper')
+        .appendTo(document.querySelector('.login_form'));
 
-        const loginText = this.build.create('p')
-            .addClass('loginText')
-            .setTextContent('Login:')
-            .appendTo(document.querySelector('.loginFormWrapper'));
+    const loginText = build.create('p')
+        .addClass('loginText')
+        .setTextContent('Login:')
+        .appendTo(document.querySelector('.loginFormWrapper'));
 
-        const loginBlock = this.build.create('div')
-            .addClass('inputBlock')
-            .setAttribute({ id: 'loginBlock' })
-            .appendTo(document.querySelector('.loginFormWrapper'));
+    const loginBlock = build.create('div')
+        .addClass('inputBlock')
+        .setAttribute({ id: 'loginBlock' })
+        .appendTo(document.querySelector('.loginFormWrapper'));
 
-        const loginInput = this.build.create('input')
-            .addClass('inputWindow')
-            .setAttribute({ placeholder: 'Your login...', type: 'text', name: 'login' })
-            .appendTo(document.querySelector('#loginBlock'));
+    const loginInput = build.create('input')
+        .addClass('inputWindow')
+        .setAttribute({ placeholder: 'Your login...', type: 'text', name: 'login' })
+        .appendTo(document.querySelector('#loginBlock'));
 
-        const passwordText = this.build.create('p')
-            .addClass('loginText')
-            .setTextContent('Password:')
-            .appendTo(document.querySelector('.loginFormWrapper'));
+    const passwordText = build.create('p')
+        .addClass('loginText')
+        .setTextContent('Password:')
+        .appendTo(document.querySelector('.loginFormWrapper'));
 
-        const passwordBlock = this.build.create('div')
-            .addClass('inputBlock')
-            .setAttribute({ id: 'passwordBlock' })
-            .appendTo(document.querySelector('.loginFormWrapper'));
+    const passwordBlock = build.create('div')
+        .addClass('inputBlock')
+        .setAttribute({ id: 'passwordBlock' })
+        .appendTo(document.querySelector('.loginFormWrapper'));
 
-        const passwordInput = this.build.create('input')
-            .addClass('inputWindow')
-            .setAttribute({ id: 'loginPasswordInput', placeholder: 'Your password...', type: 'password', name: 'password' })
-            .appendTo(document.querySelector('#passwordBlock'));
+    const passwordInput = build.create('input')
+        .addClass('inputWindow')
+        .setAttribute({ id: 'loginPasswordInput', placeholder: 'Your password...', type: 'password', name: 'password' })
+        .appendTo(document.querySelector('#passwordBlock'));
 
-        const passwordSwitcher = this.build.create('img')
-            .addClass('imgPasswordSwitcher')
-            .setAttribute({ id: 'imgSwitcher', src: './assets/img/eye-off-outline.svg' })
-            .appendTo(document.querySelector('#passwordBlock'));
+    const passwordSwitcher = build.create('img')
+        .addClass('imgPasswordSwitcher')
+        .setAttribute({ id: 'imgSwitcher', src: './assets/img/eye-off-outline.svg' })
+        .appendTo(document.querySelector('#passwordBlock'));
 
-        const btnForm = this.build.create('button')
-            .addClass('btnForm')
-            .setTextContent('Lets start')
-            .appendTo(document.querySelector('.loginFormWrapper'));
+    const btnForm = build.create('button')
+        .addClass('btnForm')
+        .setTextContent('Lets start')
+        .appendTo(document.querySelector('.loginFormWrapper'));
 
-        const registrationUrl = this.build.create('a')
-            .setAttribute({ id: 'regUrl', href: '' })
-            .setTextContent('Registration')
-            .appendTo(document.querySelector('.login_form'));
+    const registrationUrl = build.create('a')
+        .setAttribute({ id: 'regUrl', href: '' })
+        .setTextContent('Registration')
+        .appendTo(document.querySelector('.login_form'));
 
-        return this;
-    }
+    const buttonLogin = document.querySelector('.btnForm'),
+          loginFormWrapWrap = document.querySelector('.loginFormWrapper'),
+          regUrl = document.querySelector('#regUrl');
 
-    initEventListeners() {
-        this.buttonLogin = document.querySelector('.btnForm');
-        this.loginFormWrapWrap = document.querySelector('.loginFormWrapper');
-        this.regUrl = document.querySelector('#regUrl');
-        this.passwordToggle = document.querySelector('#imgSwitcher');
-        this.loginPasswordInput = document.querySelector('#loginPasswordInput');
+    const passwordToggle = document.querySelector('#imgSwitcher'),
+          loginPasswordInput = document.querySelector('#loginPasswordInput');
 
-        this.passwordToggle.addEventListener('click', () => {
-        if (this.loginPasswordInput.getAttribute('type') === 'password') {
-            this.passwordToggle.src = './assets/img/eye-outline.svg';
-            this.loginPasswordInput.setAttribute('type', 'text');
+        passwordToggle.addEventListener('click', () => {
+        if (loginPasswordInput.getAttribute('type') === 'password') {
+            passwordToggle.src = './assets/img/eye-outline.svg';
+            loginPasswordInput.setAttribute('type', 'text');
         } else {
-            this.passwordToggle.src = './assets/img/eye-off-outline.svg';
-            this.loginPasswordInput.setAttribute('type', 'password');
-            }
-        });
+            passwordToggle.src = './assets/img/eye-off-outline.svg';
+            loginPasswordInput.setAttribute('type', 'password');
+        }
+    });
 
-        this.regUrl.addEventListener('click', (e) => {
-            e.preventDefault();
+    regUrl.addEventListener('click', (e) => {
+        e.preventDefault();
 
-            document.querySelector('.login_page').classList.add('hide');
-            document.querySelector('.reg_page').classList.remove('hide');
+        document.querySelector('.login_page').classList.add('hide');
+        document.querySelector('.reg_page').classList.remove('hide');
 
-            this.loginFormWrapWrap.reset();
-        });
+        loginFormWrapWrap.reset();
+    });
 
-        this.buttonLogin.addEventListener('click', (e) => {
-            e.preventDefault();
+    buttonLogin.addEventListener('click', (e) => {
+        e.preventDefault();
 
         if (document.querySelector('.regMessageError')) {
             document.querySelector('.regMessageError').remove();
         }
 
-        this.userData = JSON.parse(localStorage.getItem('userData'));
-        this.loginFormData = new FormData(this.loginFormWrapWrap);
-        this.login = this.loginFormData.get('login');
-        this.password = this.loginFormData.get('password');
+        const userData = JSON.parse(localStorage.getItem('userData')),
+              loginFormData = new FormData(loginFormWrapWrap),
+              login = loginFormData.get('login'),
+              password = loginFormData.get('password');
 
-        if (this.userData && this.userData.login === this.login && this.userData.password === this.password) {
-            document.querySelector('.user').textContent = `Hello, ${this.login}`;
-
+        if (userData && userData.login === login && userData.password === password) {
             document.querySelector('.login_page').classList.add('hide');
             document.querySelector('.main_page').classList.remove('hide');
 
             localStorage.setItem('login', true);
           } else {
-            ValidationMessage.message('regMessageError', 'Wrong login or password', this.loginFormWrapWrap);
-            ValidationAnimation.animation('#loginBlock');
-            ValidationAnimation.animation('#passwordBlock');
+            build.create('p')
+            .addClass('regMessageError')
+            .setTextContent('Wrong login or password')
+            .appendTo(loginFormWrapWrap);
+
+            document.querySelector('#loginBlock').animate(
+                [
+                  { transform: 'translateX(0)' },
+                  { transform: 'translateX(5px)' },
+                  { transform: 'translateX(-5px)' },
+                  { transform: 'translateX(2.5px)' },
+                  { transform: 'translateX(-2.5px)' },
+                  { transform: 'translateX(0)' },
+                ],
+                {
+                  duration: 200,
+                  iterations: 2,
+                },
+              );
+
+              document.querySelector('#passwordBlock').animate(
+                [
+                  { transform: 'translateX(0)' },
+                  { transform: 'translateX(5px)' },
+                  { transform: 'translateX(-5px)' },
+                  { transform: 'translateX(2.5px)' },
+                  { transform: 'translateX(-2.5px)' },
+                  { transform: 'translateX(0)' },
+                ],
+                {
+                  duration: 200,
+                  iterations: 2,
+                },
+              );
           }
     });
-    }
-}
+};
+
+export default loginPage;
