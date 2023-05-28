@@ -76,6 +76,7 @@ export default class MainPage {
         });
     }
 
+    // NOT WORKING!!!! SOS!!! NEED HELP!!!
     filter() {
         this.ProfileFilter = this.profileFilter()
             .search();
