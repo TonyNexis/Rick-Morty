@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import profile from './modules/profilePage.js';
 import getCharacters from './modules/getCharacters.js';
-import mainPage from './modules/mainPage.js';
+import MainPage from './modules/mainPage.js';
 import LoginPage from './modules/loginPage.js';
 import RegPage from './modules/regPage.js';
 
@@ -11,14 +11,18 @@ export default class App {
     }
 
     initialize() {
-        mainPage();
+        this.mainPage = new MainPage()
+            .createPage()
+            .initEventListeners();
+            // .filter();
         getCharacters();
         profile();
-        const login = new LoginPage()
-            .createLoginPage()
+        this.login = new LoginPage()
+            .createPage()
             .initEventListeners();
 
-        const RegistrationPage = new RegPage();
+        this.RegistrationPage = new RegPage()
+            .initEventListeners();
 
         if (localStorage.getItem('login') === 'true') {
             document.querySelector('.login_page').classList.add('hide');

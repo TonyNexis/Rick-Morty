@@ -14,8 +14,6 @@ export default class RegPage {
         this.regForm = document.querySelector('.regFormWrapper');
         this.regBtn = document.querySelector('.regbtnForm');
         this.build = new ElementCreator();
-
-        this.initEventListeners();
     }
 
     initEventListeners() {

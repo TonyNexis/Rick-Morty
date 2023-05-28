@@ -9,7 +9,7 @@ export default class LoginPage {
         this.build = new ElementCreator();
     }
 
-    createLoginPage() {
+    createPage() {
         const loginWrapper = this.build.create('div')
             .addClass('flex-container')
             .addClass('login_page')
