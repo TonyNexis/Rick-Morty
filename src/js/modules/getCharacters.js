@@ -1,4 +1,4 @@
-import FetchAPI from './FetchAPI.js';
+import FetchAPI from '../services/FetchAPI.js';
 
 const getCharacters = () => {
     FetchAPI.get('https://rickandmortyapi.com/api/character').then(data => {
