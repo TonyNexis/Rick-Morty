@@ -19,11 +19,15 @@ export default class RegPage {
     initEventListeners() {
         this.loginUrl.addEventListener('click', (e) => {
             e.preventDefault();
-            this.regastrationPage.classList.add('hide');
+            this.registrationPage.classList.add('hide');
             this.loginPage.classList.remove('hide');
 
             if (document.querySelector('.regMessageError')) {
                 document.querySelector('.regMessageError').remove();
+            }
+
+            if (document.querySelector('.regMessageOk')) {
+                document.querySelector('.regMessageOk').remove();
             }
 
             this.regForm.reset();
@@ -59,6 +63,12 @@ export default class RegPage {
                     setTimeout(() => {
                         this.registrationPage.classList.add('hide');
                         this.loginPage.classList.remove('hide');
+
+                        this.regForm.reset();
+
+                    if (document.querySelector('.regMessageOk')) {
+                        document.querySelector('.regMessageOk').remove();
+                    }
                     }, 1000);
             }
         });

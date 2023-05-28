@@ -14,17 +14,19 @@ export default class MainPage {
         .addClass('hide')
         .appendTo(document.body);
 
-        this.login = localStorage.getItem('login');
-        this.userDataObj = JSON.parse(localStorage.getItem('userData'));
-
         this.userBlock = this.build.create('div')
             .setAttribute({ id: 'userBlock' })
             .appendTo(document.querySelector('.main_page'));
 
         this.user = this.build.create('span')
             .addClass('user')
-            .setTextContent(`Hello, ${this.userDataObj.login}`)
             .appendTo(document.querySelector('#userBlock'));
+
+        this.login = localStorage.getItem('login');
+            if (this.login) {
+                this.userDataObj = JSON.parse(localStorage.getItem('userData'));
+                this.user.setTextContent(`Hello, ${this.userDataObj.login}`);
+            }
 
         this.logoutUrl = this.build.create('a')
             .addClass('user')
