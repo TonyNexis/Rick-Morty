@@ -8,11 +8,7 @@ import ValidationMessage from '../services/ValidationMessage.js';
 
 export default class RegPage {
     constructor() {
-        // this.loginUrl = document.querySelector('#loginUrl');
         this.loginPage = document.querySelector('.login_page');
-        // this.registrationPage = document.querySelector('.reg_page');
-        // this.regForm = document.querySelector('.regFormWrapper');
-        // this.regBtn = document.querySelector('.regbtnForm');
         this.build = new ElementCreator();
     }
 
@@ -88,6 +84,9 @@ export default class RegPage {
     }
 
     initEventListeners() {
+        this.registrationPage = document.querySelector('.reg_page');
+        this.regFormWrapper = document.querySelector('.regFormWrapper');
+
         this.loginUrl = document.querySelector('#loginUrl').addEventListener('click', (e) => {
             e.preventDefault();
             this.registrationPage.classList.add('hide');
