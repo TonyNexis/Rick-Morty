@@ -22,6 +22,7 @@ export default class App {
             .initEventListeners();
 
         this.RegistrationPage = new RegPage()
+            .createPage()
             .initEventListeners();
 
         if (localStorage.getItem('login') === 'true') {
