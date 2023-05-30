@@ -1,36 +1,51 @@
+/* eslint-disable import/extensions */
 import FetchAPI from '../services/FetchAPI.js';
 import ElementCreator from '../services/ElementCreator.js';
 
-const profile = () => {
-      const build = new ElementCreator();
+export default class ProfilePage {
+    constructor() {
+        this.build = new ElementCreator();
+        this.mainPage = document.querySelector('.main_page');
+    }
 
-      const profilePage = build.create('div')
-          .addClass('profile_page')
-          .appendTo(document.body);
+    createPage() {
+        this.profilePage = this.build.create('div')
+            .addClass('profile_page')
+            .appendTo(document.body);
 
-      const profilePageBtn = build.create('button')
-          .addClass('profile_page_btn')
-          .setInnerHtml(`<svg class="arrow" width="16" height="16" viewBox="0 0 16 16">
-          <path d="M16 7H3.83L9.42 1.41L8 0L0 8L8 16L9.41 14.59L3.83 9H16V7Z"/></path>
-          </svg><span>GO BACK</span>`)
-          .appendTo(document.querySelector('.profile_page'));
+        this.profilePageBtn = this.build.create('button')
+            .addClass('profile_page_btn')
+            .appendTo(document.querySelector('.profile_page'));
 
-      const profileWrapper = build.create('div')
+        this.arrow = this.build.createSvg()
+            .addClass('arrow')
+            .setAttribute({ width: '16', height: '16', viewBox: '0 0 16 16' })
+            .setInnerHtml('<path d="M16 7H3.83L9.42 1.41L8 0L0 8L8 16L9.41 14.59L3.83 9H16V7Z"/></path>')
+            .appendTo(document.querySelector('.profile_page_btn'));
+
+        this.goBack = this.build.create('span')
+            .setTextContent('GO BACK')
+            .appendTo(document.querySelector('.profile_page_btn'));
+
+        this.profileWrapper = this.build.create('div')
           .addClass('flex-container')
           .addClass('profile')
           .appendTo(document.querySelector('.profile_page'));
 
-      const main = document.querySelector('.main_page'),
-          goBackBtn = document.querySelector('.profile_page_btn'),
-          cards = document.querySelector('.cards'),
-          profileCard = document.querySelector('.profile_page');
+        return this;
+    }
 
-    cards.addEventListener('click', (e) => {
+    initEventListeners() {
+        this.goBackBtn = document.querySelector('.profile_page_btn');
+        this.cards = document.querySelector('.cards');
+        this.profileCard = document.querySelector('.profile_page');
+
+        this.cards.addEventListener('click', (e) => {
         const card = e.target.closest('.card');
         if (card) {
             let urlCharacter = `https://rickandmortyapi.com/api/character/${card.id}`;
 
-            FetchAPI.get(urlCharacter).then(character => {
+        FetchAPI.get(urlCharacter).then(character => {
                 let type;
                 if (character.type === '') {
                     type = 'Unknown';
@@ -47,8 +62,10 @@ const profile = () => {
                     statusIcon = 'status_icon_unknown';
                 }
 
-                profileWrapper
-                    .setInnerHtml(`
+                // не работает
+                this.profileWrapper = document.querySelector('.profile');
+
+                this.profileWrapper.innerHTML = `
                        <img class="profile_img" src="${character.image}" alt="profile_image">
                        <p class="profile_name">${character.name}</p>
                        <p class="profile_info">Informations</p>
@@ -75,26 +92,20 @@ const profile = () => {
                        <div class="profile_container">
                        <p class="profile_cont_mainText">Episodes</p>
                        <p class="profile_cont_secondText">${character.episode.length}</p>
-                     </div>`);
+                     </div>`;
             });
 
-        main.style.display = 'none';
-        profileCard.style.display = 'block';
+        this.mainPage.style.display = 'none';
+        this.profileCard.style.display = 'block';
         }
-    });
 
-    function goBack() {
-        const profileBlock = document.getElementById('profileBlock');
-        goBackBtn.addEventListener('click', () => {
+        this.goBackBtn.addEventListener('click', () => {
             setTimeout(() => {
-                main.style.display = '';
-                profileCard.style.display = 'none';
+                this.mainPage.style.display = '';
+                this.profileCard.style.display = 'none';
                 document.querySelector('.profile').innerHTML = '';
             }, 150);
         });
+    });
     }
-
-    goBack();
-};
-
-export default profile;
+}

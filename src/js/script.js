@@ -1,9 +1,10 @@
 /* eslint-disable import/extensions */
-import profile from './modules/profilePage.js';
+import ProfilePage from './modules/profilePage.js';
 import getCharacters from './modules/getCharacters.js';
 import MainPage from './modules/mainPage.js';
 import LoginPage from './modules/loginPage.js';
 import RegPage from './modules/regPage.js';
+import ProfileFilter from './services/ProfileFilter.js';
 
 export default class App {
     constructor() {
@@ -15,9 +16,17 @@ export default class App {
             .createPage()
             .initEventListeners();
             // .filter();
-        getCharacters();
-        profile();
-        this.login = new LoginPage()
+
+        this.profileFilter = new ProfileFilter()
+            .search();
+
+            getCharacters();
+
+        this.profilePage = new ProfilePage()
+            .createPage()
+            .initEventListeners();
+
+        this.loginPage = new LoginPage()
             .createPage()
             .initEventListeners();
 

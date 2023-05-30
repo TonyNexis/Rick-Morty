@@ -1,10 +1,11 @@
+/* eslint-disable import/extensions */
 import ElementCreator from '../services/ElementCreator.js';
-import ProfileFilter from '../services/ProfileFilter.js';
+// import ProfileFilter from '../services/ProfileFilter.js';
 
 export default class MainPage {
     constructor() {
         this.build = new ElementCreator();
-        this.profileFilter = new ProfileFilter();
+        // this.profileFilter = new ProfileFilter();
     }
 
     createPage() {
@@ -74,11 +75,12 @@ export default class MainPage {
         this.logoutUrl = document.querySelector('#logoutUrl').addEventListener('click', (e) => {
             localStorage.setItem('login', false);
         });
+
+        return this;
     }
 
     // NOT WORKING!!!! SOS!!! NEED HELP!!!
-    filter() {
-        this.ProfileFilter = this.profileFilter()
-            .search();
-    }
+    // filter() {
+    //     this.test = this.profileFilter().search();
+    // }
 }
