@@ -59,7 +59,7 @@ export default class RegPage {
 
         this.regPasswordInput = this.build.create('input')
             .addClass('reginputWindow')
-            .setAttribute({ id: 'passwordinputWindow',
+            .setAttribute({ id: 'passwordRegInputWindow',
               placeholder: 'Your password...',
               type: 'password',
               name: 'password' })
@@ -67,7 +67,7 @@ export default class RegPage {
 
         this.imgPasswordSwitcher = this.build.create('img')
             .addClass('imgPasswordSwitcher')
-            .setAttribute({ src: './assets/img/eye-off-outline.svg', alt: '' })
+            .setAttribute({ id: 'regPasswordSwitcher', src: './assets/img/eye-off-outline.svg', alt: '' })
             .appendTo(document.querySelector('#regpasswordBlock'));
 
         this.regBtn = this.build.create('button')
@@ -143,8 +143,8 @@ export default class RegPage {
             }
         });
 
-        this.passwordToggle = document.querySelector('.imgPasswordSwitcher');
-        this.passwordInput = document.querySelector('#passwordinputWindow');
+        this.passwordToggle = document.querySelector('#regPasswordSwitcher');
+        this.passwordInput = document.querySelector('#passwordRegInputWindow');
 
         this.passwordToggle.addEventListener('click', () => {
             if (this.passwordInput.getAttribute('type') === 'password') {
