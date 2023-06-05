@@ -5,6 +5,7 @@ import MainPage from './modules/mainPage.js';
 import LoginPage from './modules/loginPage.js';
 import RegPage from './modules/regPage.js';
 import ProfileFilter from './services/ProfileFilter.js';
+import Router from './services/router.js';
 
 export default class App {
     constructor() {
@@ -12,6 +13,8 @@ export default class App {
     }
 
     initialize() {
+        this.router = new Router();
+
         this.mainPage = new MainPage()
             .createPage()
             .initEventListeners();
@@ -26,21 +29,36 @@ export default class App {
             .createPage()
             .initEventListeners();
 
-        this.loginPage = new LoginPage()
-            .createPage()
-            .initEventListeners();
+        // this.loginPage = new LoginPage()
+        //     .createPage()
+        //     .initEventListeners();
 
-        this.RegistrationPage = new RegPage()
-            .createPage()
-            .initEventListeners();
+        this.router.addRoute('/login', () => {
+            this.loginPage = new LoginPage()
+                .createPage()
+                .initEventListeners();
+        });
 
-        if (localStorage.getItem('login') === 'true') {
-            document.querySelector('.login_page').classList.add('hide');
-            document.querySelector('.main_page').classList.remove('hide');
-        } else {
-            document.querySelector('.main_page').classList.add('hide');
-            document.querySelector('.login_page').classList.remove('hide');
-        }
+        // this.RegistrationPage = new RegPage()
+        //     .createPage()
+        //     .initEventListeners();
+
+        this.router.addRoute('/registration', () => {
+            this.RegistrationPage = new RegPage()
+                .createPage()
+                .initEventListeners();
+            });
+
+        // if (localStorage.getItem('login') === 'true') {
+        //     document.querySelector('.login_page').classList.add('hide');
+        //     document.querySelector('.main_page').classList.remove('hide');
+        // } else {
+        //     document.querySelector('.main_page').classList.add('hide');
+        //     document.querySelector('.login_page').classList.remove('hide');
+        // }
+
+        this.router.handleRouteChange();
+        this.router.navigateTo('/login');
     }
 }
 

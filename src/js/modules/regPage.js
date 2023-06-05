@@ -5,6 +5,7 @@ import ElementCreator from '../services/ElementCreator.js';
 import Validation from '../services/Validation.js';
 import ValidationAnimation from '../services/ValidationAnimation.js';
 import ValidationMessage from '../services/ValidationMessage.js';
+import Router from '../services/router.js';
 
 export default class RegPage {
     constructor() {
@@ -13,10 +14,12 @@ export default class RegPage {
     }
 
     createPage() {
+        this.router = new Router();
+
         this.registrationPage = this.build.create('div')
             .addClass('flex-container')
             .addClass('reg_page')
-            .addClass('hide')
+            // .addClass('hide')
             .appendTo(document.body);
 
         this.regForm = this.build.create('div')
@@ -89,8 +92,11 @@ export default class RegPage {
 
         this.loginUrl = document.querySelector('#loginUrl').addEventListener('click', (e) => {
             e.preventDefault();
-            this.registrationPage.classList.add('hide');
-            this.loginPage.classList.remove('hide');
+            // this.registrationPage.classList.add('hide');
+            // this.loginPage.classList.remove('hide');
+
+            this.router.navigateTo('/login');
+            this.loginPage = document.querySelector('.reg_page').remove();
 
             if (document.querySelector('.regMessageError')) {
                 document.querySelector('.regMessageError').remove();

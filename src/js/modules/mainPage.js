@@ -75,8 +75,6 @@ export default class MainPage {
         this.logoutUrl = document.querySelector('#logoutUrl').addEventListener('click', (e) => {
             localStorage.setItem('login', false);
         });
-
-        return this;
     }
 
     // NOT WORKING!!!! SOS!!! NEED HELP!!!

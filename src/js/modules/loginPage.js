@@ -3,6 +3,7 @@ import ElementCreator from '../services/ElementCreator.js';
 // import FetchAPI from './FetchAPI.js';
 import ValidationAnimation from '../services/ValidationAnimation.js';
 import ValidationMessage from '../services/ValidationMessage.js';
+import Router from '../services/router.js';
 
 export default class LoginPage {
     constructor() {
@@ -10,6 +11,8 @@ export default class LoginPage {
     }
 
     createPage() {
+        this.router = new Router();
+
         const loginWrapper = this.build.create('div')
             .addClass('flex-container')
             .addClass('login_page')
@@ -96,10 +99,13 @@ export default class LoginPage {
         this.regUrl.addEventListener('click', (e) => {
             e.preventDefault();
 
-            document.querySelector('.login_page').classList.add('hide');
-            document.querySelector('.reg_page').classList.remove('hide');
+            // document.querySelector('.login_page').classList.add('hide');
+            // document.querySelector('.reg_page').classList.remove('hide');
 
-            this.loginFormWrapWrap.reset();
+            this.router.navigateTo('/registration');
+            this.loginPage = document.querySelector('.login_page').remove();
+
+            // this.loginFormWrapWrap.reset();
         });
 
         this.buttonLogin.addEventListener('click', (e) => {
