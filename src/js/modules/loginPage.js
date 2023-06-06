@@ -72,7 +72,7 @@ export default class LoginPage {
             .appendTo(document.querySelector('.loginFormWrapper'));
 
         const registrationUrl = this.build.create('a')
-            .setAttribute({ id: 'regUrl', href: '' })
+            .setAttribute({ id: 'regUrl', href: './registration' })
             .setTextContent('Registration')
             .appendTo(document.querySelector('.login_form'));
 
@@ -101,6 +101,8 @@ export default class LoginPage {
 
             // document.querySelector('.login_page').classList.add('hide');
             // document.querySelector('.reg_page').classList.remove('hide');
+
+
 
             this.router.navigateTo('/registration');
             this.loginPage = document.querySelector('.login_page').remove();

@@ -79,7 +79,7 @@ export default class RegPage {
             .appendTo(document.querySelector('.regFormWrapper'));
 
         this.loginUrl = this.build.create('a')
-            .setAttribute({ id: 'loginUrl', href: '' })
+            .setAttribute({ id: 'loginUrl', href: './login' })
             .setTextContent('Go back')
             .appendTo(document.querySelector('.reg_form'));
 
@@ -137,10 +137,8 @@ export default class RegPage {
                     localStorage.setItem('userData', JSON.stringify(userData));
                     ValidationMessage.message('regMessageOk', 'Registration successful', this.regFormWrapper);
                     setTimeout(() => {
-                        this.registrationPage.classList.add('hide');
-                        this.loginPage.classList.remove('hide');
-
-                        this.regFormWrapper.reset();
+                        this.router.navigateTo('/login');
+                        this.loginPage = document.querySelector('.reg_page').remove();
 
                     if (document.querySelector('.regMessageOk')) {
                         document.querySelector('.regMessageOk').remove();
