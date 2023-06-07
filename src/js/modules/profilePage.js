@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import FetchAPI from '../services/FetchAPI.js';
 import ElementCreator from '../services/ElementCreator.js';
+import Router from '../services/Router.js';
 
 export default class ProfilePage {
     constructor() {
@@ -36,6 +37,7 @@ export default class ProfilePage {
     }
 
     initEventListeners() {
+        this.router = new Router();
         this.goBackBtn = document.querySelector('.profile_page_btn');
         this.cards = document.querySelector('.cards');
         this.profileCard = document.querySelector('.profile_page');
@@ -43,6 +45,10 @@ export default class ProfilePage {
         this.cards.addEventListener('click', (e) => {
         const card = e.target.closest('.card');
         if (card) {
+
+            this.router.addRoute(`/profile/${card.id}`, () => {
+
+            });
             let urlCharacter = `https://rickandmortyapi.com/api/character/${card.id}`;
 
         FetchAPI.get(urlCharacter).then(character => {
@@ -95,8 +101,8 @@ export default class ProfilePage {
                      </div>`;
             });
 
-        this.mainPage.style.display = 'none';
-        this.profileCard.style.display = 'block';
+        // this.mainPage.style.display = 'none';
+        // this.profileCard.style.display = 'block';
         }
 
         this.goBackBtn.addEventListener('click', () => {

@@ -1,18 +1,20 @@
 /* eslint-disable import/extensions */
 import ElementCreator from '../services/ElementCreator.js';
-// import ProfileFilter from '../services/ProfileFilter.js';
+import ProfileFilter from '../services/ProfileFilter.js';
+import getCharacters from './getCharacters.js';
 
 export default class MainPage {
     constructor() {
         this.build = new ElementCreator();
-        // this.profileFilter = new ProfileFilter();
+        this.profileFilter = new ProfileFilter();
     }
 
     createPage() {
+        getCharacters();
+
         this.mainPageWrapper = this.build.create('div')
         .addClass('flex-container')
         .addClass('main_page')
-        .addClass('hide')
         .appendTo(document.body);
 
         this.userBlock = this.build.create('div')
@@ -67,6 +69,9 @@ export default class MainPage {
         this.cards = this.build.create('div')
             .addClass('cards')
             .appendTo(document.querySelector('.main_page'));
+
+        
+            // this.profileFilter.search();
 
         return this;
     }

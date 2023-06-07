@@ -4,8 +4,8 @@ import getCharacters from './modules/getCharacters.js';
 import MainPage from './modules/mainPage.js';
 import LoginPage from './modules/loginPage.js';
 import RegPage from './modules/regPage.js';
-import ProfileFilter from './services/ProfileFilter.js';
-import Router from './services/router.js';
+// import ProfileFilter from './services/ProfileFilter.js';
+import Router from './services/Router.js';
 
 export default class App {
     constructor() {
@@ -15,35 +15,38 @@ export default class App {
     initialize() {
         this.router = new Router();
 
-        this.mainPage = new MainPage()
-            .createPage()
-            .initEventListeners();
-            // .filter();
+        this.router.addRoute('/main', () => {
+            this.mainPage = new MainPage()
+                .createPage()
+                .initEventListeners();
+                 // .filter();
+        });
 
-        this.profileFilter = new ProfileFilter()
-            .search();
+        // this.mainPage = new MainPage()
+        //     .createPage()
+        //     .initEventListeners();
+        //     // .filter();
 
-            getCharacters();
+            // getCharacters();
 
-        this.profilePage = new ProfilePage()
-            .createPage()
-            .initEventListeners();
+        // this.profilePage = new ProfilePage()
+        //     .createPage()
+        //     .initEventListeners();
 
         // this.loginPage = new LoginPage()
         //     .createPage()
         //     .initEventListeners();
 
-        this.router.addRoute('/login', () => {
-            this.loginPage = new LoginPage()
-                .createPage()
-                .initEventListeners();
-        });
+        this.loginPage = new LoginPage()
+        .createPage()
+        .initEventListeners();
 
         // this.RegistrationPage = new RegPage()
         //     .createPage()
         //     .initEventListeners();
 
         this.router.addRoute('/registration', () => {
+            if (document.querySelector('.login_page')) {document.querySelector('.login_page').remove();}
             this.RegistrationPage = new RegPage()
                 .createPage()
                 .initEventListeners();
@@ -58,7 +61,7 @@ export default class App {
         // }
 
         this.router.handleRouteChange();
-        this.router.navigateTo('/login');
+        // this.router.navigateTo('/login');
     }
 }
 

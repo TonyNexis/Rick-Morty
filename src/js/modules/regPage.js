@@ -5,7 +5,7 @@ import ElementCreator from '../services/ElementCreator.js';
 import Validation from '../services/Validation.js';
 import ValidationAnimation from '../services/ValidationAnimation.js';
 import ValidationMessage from '../services/ValidationMessage.js';
-import Router from '../services/router.js';
+import Router from '../services/Router.js';
 
 export default class RegPage {
     constructor() {
@@ -95,7 +95,7 @@ export default class RegPage {
             // this.registrationPage.classList.add('hide');
             // this.loginPage.classList.remove('hide');
 
-            this.router.navigateTo('/login');
+            this.router.navigateTo('');
             this.loginPage = document.querySelector('.reg_page').remove();
 
             if (document.querySelector('.regMessageError')) {

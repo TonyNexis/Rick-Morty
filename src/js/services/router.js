@@ -32,9 +32,9 @@ export default class Router {
   }
 
   // Получение ID персонажа из URL
-  getCharacterIdFromUrl() {
-    const hash = window.location.hash.slice(1);
-    const match = hash.match(/^\/profile\/(\d+)$/);
-    return match ? match[1] : null;
-  }
+  // getCharacterIdFromUrl() {
+  //   const hash = window.location.hash.slice(1);
+  //   const match = hash.match(/^\/profile\/(\d+)$/);
+  //   return match ? match[1] : null;
+  // }
 }
