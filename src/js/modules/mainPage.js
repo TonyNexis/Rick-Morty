@@ -2,11 +2,15 @@
 import ElementCreator from '../services/ElementCreator.js';
 import ProfileFilter from '../services/ProfileFilter.js';
 import getCharacters from './getCharacters.js';
+import Router from '../services/Router.js';
+
+import ProfilePage from './profilePage.js';
 
 export default class MainPage {
     constructor() {
         this.build = new ElementCreator();
         this.profileFilter = new ProfileFilter();
+        this.router = new Router();
     }
 
     createPage() {
@@ -70,15 +74,27 @@ export default class MainPage {
             .addClass('cards')
             .appendTo(document.querySelector('.main_page'));
 
-        
-            // this.profileFilter.search();
-
         return this;
     }
 
     initEventListeners() {
         this.logoutUrl = document.querySelector('#logoutUrl').addEventListener('click', (e) => {
             localStorage.setItem('login', false);
+        });
+
+        this.cards = document.querySelector('.cards').addEventListener('click', (e) => {
+            const card = e.target.closest('.card');
+            if (card) {
+                window.cardID = card.id;
+                this.router.addRoute(`/profile/${card.id}`, () => {
+                    this.profilePage = new ProfilePage()
+                        .createPage()
+                        .getProfileData();
+                        // .initEventListeners();
+                });
+            this.router.navigateTo(`/profile/${card.id}`);
+            this.loginPage = document.querySelector('.main_page').remove();
+        }
         });
     }
 

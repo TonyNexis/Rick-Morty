@@ -16,52 +16,44 @@ export default class App {
         this.router = new Router();
 
         this.router.addRoute('/main', () => {
+            if (document.querySelector('.profile_page')) {
+                document.querySelector('.profile_page').remove();
+            }
             this.mainPage = new MainPage()
                 .createPage()
                 .initEventListeners();
                  // .filter();
         });
 
-        // this.mainPage = new MainPage()
-        //     .createPage()
-        //     .initEventListeners();
-        //     // .filter();
-
-            // getCharacters();
-
-        // this.profilePage = new ProfilePage()
-        //     .createPage()
-        //     .initEventListeners();
-
-        // this.loginPage = new LoginPage()
-        //     .createPage()
-        //     .initEventListeners();
-
-        this.loginPage = new LoginPage()
-        .createPage()
-        .initEventListeners();
-
-        // this.RegistrationPage = new RegPage()
-        //     .createPage()
-        //     .initEventListeners();
+        this.router.addRoute('/login', () => {
+            this.loginPage = new LoginPage()
+                .createPage()
+                .initEventListeners();
+        });
 
         this.router.addRoute('/registration', () => {
-            if (document.querySelector('.login_page')) {document.querySelector('.login_page').remove();}
             this.RegistrationPage = new RegPage()
                 .createPage()
                 .initEventListeners();
             });
 
-        // if (localStorage.getItem('login') === 'true') {
-        //     document.querySelector('.login_page').classList.add('hide');
-        //     document.querySelector('.main_page').classList.remove('hide');
-        // } else {
-        //     document.querySelector('.main_page').classList.add('hide');
-        //     document.querySelector('.login_page').classList.remove('hide');
-        // }
+        this.router.addRoute(`/profile/${window.cardID}`, () => {
+                this.profilePage = new ProfilePage()
+                    .createPage()
+                    .initEventListeners();
+            });
+
+        if (localStorage.getItem('login') === 'true') {
+                this.router.navigateTo('/main');
+            } else if (window.location.hash === '#/registration') {
+                this.router.navigateTo('/registration');
+            } else if (window.location.hash === `/profile/${window.cardID}`) {
+                this.router.navigateTo(`/profile/${window.cardID}`);
+            } else {
+                this.router.navigateTo('/login');
+            }
 
         this.router.handleRouteChange();
-        // this.router.navigateTo('/login');
     }
 }
 

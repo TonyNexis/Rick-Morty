@@ -99,15 +99,8 @@ export default class LoginPage {
         this.regUrl.addEventListener('click', (e) => {
             e.preventDefault();
 
-            // document.querySelector('.login_page').classList.add('hide');
-            // document.querySelector('.reg_page').classList.remove('hide');
-
-
-
             this.router.navigateTo('/registration');
             this.loginPage = document.querySelector('.login_page').remove();
-
-            // this.loginFormWrapWrap.reset();
         });
 
         this.buttonLogin.addEventListener('click', (e) => {

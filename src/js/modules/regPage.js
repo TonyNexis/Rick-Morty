@@ -95,7 +95,7 @@ export default class RegPage {
             // this.registrationPage.classList.add('hide');
             // this.loginPage.classList.remove('hide');
 
-            this.router.navigateTo('');
+            this.router.navigateTo('/login');
             this.loginPage = document.querySelector('.reg_page').remove();
 
             if (document.querySelector('.regMessageError')) {
