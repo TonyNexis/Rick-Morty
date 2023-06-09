@@ -26,9 +26,11 @@ export default class App {
         });
 
         this.router.addRoute('/login', () => {
-            this.loginPage = new LoginPage()
+            if (!document.querySelector('.login_page')) {
+                this.loginPage = new LoginPage()
                 .createPage()
                 .initEventListeners();
+            }
         });
 
         this.router.addRoute('/registration', () => {
@@ -47,8 +49,16 @@ export default class App {
                 this.router.navigateTo('/main');
             } else if (window.location.hash === '#/registration') {
                 this.router.navigateTo('/registration');
-            } else if (window.location.hash === `/profile/${window.cardID}`) {
-                this.router.navigateTo(`/profile/${window.cardID}`);
+            } else if (window.location.hash === `/profile/1`) {
+                // this.router.navigateTo(`/profile/${window.cardID}`);
+                // window.cardID = card.id;
+                this.router.addRoute(`/profile/1`, () => {
+                    this.profilePage = new ProfilePage()
+                        .createPage()
+                        .getProfileData();
+                        // .initEventListeners();
+                });
+            this.router.navigateTo(`/profile/1`);
             } else {
                 this.router.navigateTo('/login');
             }
