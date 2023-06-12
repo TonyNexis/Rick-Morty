@@ -1,66 +1,86 @@
-import ElementCreator from './ElementCreator.js';
+/* eslint-disable import/extensions */
+import ElementCreator from '../services/ElementCreator.js';
+// import ProfileFilter from '../services/ProfileFilter.js';
 
-const mainPage = () => {
-    const build = new ElementCreator();
+export default class MainPage {
+    constructor() {
+        this.build = new ElementCreator();
+        // this.profileFilter = new ProfileFilter();
+    }
 
-    const mainPageWrapper = build.create('div')
+    createPage() {
+        this.mainPageWrapper = this.build.create('div')
         .addClass('flex-container')
         .addClass('main_page')
         .addClass('hide')
         .appendTo(document.body);
 
-    const login = localStorage.getItem('login'),
-          userDataObj = JSON.parse(localStorage.getItem('userData'));
+        this.userBlock = this.build.create('div')
+            .setAttribute({ id: 'userBlock' })
+            .appendTo(document.querySelector('.main_page'));
 
-    const userBlock = build.create('div')
-         .setAttribute({ id: 'userBlock' })
-         .appendTo(document.querySelector('.main_page'));
+        this.user = this.build.create('span')
+            .addClass('user')
+            .appendTo(document.querySelector('#userBlock'));
 
-    const user = build.create('span')
-        .addClass('user')
-        .setTextContent(`Hello, ${userDataObj.login}`)
-        .appendTo(document.querySelector('#userBlock'));
+        this.login = localStorage.getItem('login');
+            if (this.login) {
+                this.userDataObj = JSON.parse(localStorage.getItem('userData'));
+                this.user.setTextContent(`Hello, ${this.userDataObj.login}`);
+            }
 
-    const logoutUrl = build.create('a')
-        .addClass('user')
-        .setAttribute({ id: 'logoutUrl', href: '' })
-        .setTextContent('(Logout)')
-        .appendTo(document.querySelector('#userBlock'));
+        this.logoutUrl = this.build.create('a')
+            .addClass('user')
+            .setAttribute({ id: 'logoutUrl', href: '' })
+            .setTextContent('(Logout)')
+            .appendTo(document.querySelector('#userBlock'));
 
-    const header = build.create('header')
-        .appendTo(document.querySelector('.main_page'));
+        this.header = this.build.create('header')
+            .appendTo(document.querySelector('.main_page'));
 
-    const mainImg = build.create('img')
-        .addClass('main_img')
-        .setAttribute({ src: './assets/img/PngItem_438051.png', alt: 'Rick & Morty' })
-        .appendTo(document.querySelector('header'));
+        this.mainImg = this.build.create('img')
+            .addClass('main_img')
+            .setAttribute({ src: './assets/img/PngItem_438051.png', alt: 'Rick & Morty' })
+            .appendTo(document.querySelector('header'));
 
-    const searchBar = build.create('div')
-        .addClass('search_bar')
-        .appendTo(document.querySelector('.main_page'));
+        this.searchBar = this.build.create('div')
+            .addClass('search_bar')
+            .appendTo(document.querySelector('.main_page'));
 
-    const btnSearch = build.create('button')
-        .addClass('btn_search')
-        .setAttribute({ type: 'submit' })
-        .appendTo(document.querySelector('.search_bar'));
+        this.btnSearch = this.build.create('button')
+            .addClass('btn_search')
+            .setAttribute({ type: 'submit' })
+            .appendTo(document.querySelector('.search_bar'));
 
-    const searchImg = build.create('img')
-        .addClass('search_img')
-        .setAttribute({ src: './assets/img/Vector.svg', alt: 'search' })
-        .appendTo(document.querySelector('.btn_search'));
+        this.searchImg = this.build.create('img')
+            .addClass('search_img')
+            .setAttribute({ src: './assets/img/Vector.svg', alt: 'search' })
+            .appendTo(document.querySelector('.btn_search'));
 
-    const searchInput = build.create('input')
-        .addClass('search_input')
-        .setAttribute({ id: 'name-filter', placeholder: 'Filter by name...', type: 'text', name: 'filter' })
-        .appendTo(document.querySelector('.search_bar'));
+        this.searchInput = this.build.create('input')
+            .addClass('search_input')
+            .setAttribute({
+            id: 'name-filter', placeholder: 'Filter by name...', type: 'text', name: 'filter',
+            })
+            .appendTo(document.querySelector('.search_bar'));
 
-    const cards = build.create('div')
-        .addClass('cards')
-        .appendTo(document.querySelector('.main_page'));
+        this.cards = this.build.create('div')
+            .addClass('cards')
+            .appendTo(document.querySelector('.main_page'));
 
-        document.querySelector('#logoutUrl').addEventListener('click', (e) => {
+        return this;
+    }
+
+    initEventListeners() {
+        this.logoutUrl = document.querySelector('#logoutUrl').addEventListener('click', (e) => {
             localStorage.setItem('login', false);
         });
-};
 
-export default mainPage;
+        return this;
+    }
+
+    // NOT WORKING!!!! SOS!!! NEED HELP!!!
+    // filter() {
+    //     this.test = this.profileFilter().search();
+    // }
+}

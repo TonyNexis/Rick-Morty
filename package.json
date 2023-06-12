@@ -30,6 +30,7 @@
     "webpack-cli": "^5.0.1"
   },
   "dependencies": {
-    "eslint-config-prettier": "^8.6.0"
+    "eslint-config-prettier": "^8.6.0",
+    "firebase": "^9.22.0"
   }
 }
