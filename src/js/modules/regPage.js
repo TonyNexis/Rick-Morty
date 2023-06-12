@@ -92,8 +92,6 @@ export default class RegPage {
 
         this.loginUrl = document.querySelector('#loginUrl').addEventListener('click', (e) => {
             e.preventDefault();
-            // this.registrationPage.classList.add('hide');
-            // this.loginPage.classList.remove('hide');
 
             this.router.navigateTo('/login');
             this.loginPage = document.querySelector('.reg_page').remove();

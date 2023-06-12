@@ -1,10 +1,7 @@
 /* eslint-disable import/extensions */
-import ProfilePage from './modules/profilePage.js';
-import getCharacters from './modules/getCharacters.js';
 import MainPage from './modules/mainPage.js';
 import LoginPage from './modules/loginPage.js';
 import RegPage from './modules/regPage.js';
-// import ProfileFilter from './services/ProfileFilter.js';
 import Router from './services/Router.js';
 
 export default class App {
@@ -19,11 +16,15 @@ export default class App {
             if (document.querySelector('.profile_page')) {
                 document.querySelector('.profile_page').remove();
             }
-            this.mainPage = new MainPage()
+
+            if (document.querySelector('.main_page')) {
+                document.querySelector('.main_page').remove();
+            }
+                this.mainPage = new MainPage()
                 .createPage()
-                .initEventListeners();
-                 // .filter();
-        });
+                .initEventListeners()
+                .filter();
+            });
 
         this.router.addRoute('/login', () => {
             if (!document.querySelector('.login_page')) {
@@ -34,34 +35,31 @@ export default class App {
         });
 
         this.router.addRoute('/registration', () => {
-            this.RegistrationPage = new RegPage()
+            if (!document.querySelector('.reg_page')) {
+                this.RegistrationPage = new RegPage()
                 .createPage()
                 .initEventListeners();
+            }
             });
 
-        this.router.addRoute(`/profile/${window.cardID}`, () => {
-                this.profilePage = new ProfilePage()
-                    .createPage()
-                    .initEventListeners();
-            });
-
-        if (localStorage.getItem('login') === 'true') {
+        if (localStorage.getItem('login') === 'true' && (window.location.hash === '#/registration' || window.location.hash === '#/login' || window.location.hash === '#/main' || window.location.hash === '')) {
                 this.router.navigateTo('/main');
             } else if (window.location.hash === '#/registration') {
                 this.router.navigateTo('/registration');
-            } else if (window.location.hash === `/profile/1`) {
-                // this.router.navigateTo(`/profile/${window.cardID}`);
-                // window.cardID = card.id;
-                this.router.addRoute(`/profile/1`, () => {
-                    this.profilePage = new ProfilePage()
-                        .createPage()
-                        .getProfileData();
-                        // .initEventListeners();
-                });
-            this.router.navigateTo(`/profile/1`);
             } else {
                 this.router.navigateTo('/login');
             }
+
+        // for (let i = 1; i <= 20; i++) {
+        //     this.router.addRoute(`/profile/${і}`), () => {
+        //             if (!document.querySelector('.profile_page')) {
+        //                 this.profilePage = new ProfilePage()
+        //                 .createPage()
+        //                 .getProfileData(і);
+        //     if (window.location.hash === `#/profile/${i}`) {
+        //         this.router.navigateTo(`/profile/${i}`);
+        //     }
+        // }
 
         this.router.handleRouteChange();
     }

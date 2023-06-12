@@ -1,6 +1,5 @@
 /* eslint-disable import/extensions */
 import ElementCreator from '../services/ElementCreator.js';
-// import FetchAPI from './FetchAPI.js';
 import ValidationAnimation from '../services/ValidationAnimation.js';
 import ValidationMessage from '../services/ValidationMessage.js';
 import Router from '../services/Router.js';
@@ -116,10 +115,6 @@ export default class LoginPage {
         this.password = this.loginFormData.get('password');
 
         if (this.userData && this.userData.login === this.login && this.userData.password === this.password) {
-
-            // document.querySelector('.login_page').classList.add('hide');
-            // document.querySelector('.main_page').classList.remove('hide');
-
             this.router.navigateTo('/main');
             this.loginPage = document.querySelector('.login_page').remove();
 

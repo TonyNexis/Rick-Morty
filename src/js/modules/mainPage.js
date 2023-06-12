@@ -1,20 +1,19 @@
 /* eslint-disable import/extensions */
 import ElementCreator from '../services/ElementCreator.js';
 import ProfileFilter from '../services/ProfileFilter.js';
-import getCharacters from './getCharacters.js';
+import GetCharacters from '../services/GetCharacters.js';
 import Router from '../services/Router.js';
-
 import ProfilePage from './profilePage.js';
 
 export default class MainPage {
     constructor() {
         this.build = new ElementCreator();
-        this.profileFilter = new ProfileFilter();
         this.router = new Router();
+        this.getCharacters = new GetCharacters();
     }
 
     createPage() {
-        getCharacters();
+        this.getCharacters.test();
 
         this.mainPageWrapper = this.build.create('div')
         .addClass('flex-container')
@@ -74,6 +73,8 @@ export default class MainPage {
             .addClass('cards')
             .appendTo(document.querySelector('.main_page'));
 
+        this.profileFilter = new ProfileFilter();
+
         return this;
     }
 
@@ -86,20 +87,25 @@ export default class MainPage {
             const card = e.target.closest('.card');
             if (card) {
                 window.cardID = card.id;
+
                 this.router.addRoute(`/profile/${card.id}`, () => {
-                    this.profilePage = new ProfilePage()
+                    if (!document.querySelector('.profile_page')) {
+                        this.profilePage = new ProfilePage()
                         .createPage()
-                        .getProfileData();
-                        // .initEventListeners();
+                        .getProfileData()
+                        .initEventListeners();
+                    }
                 });
+
             this.router.navigateTo(`/profile/${card.id}`);
             this.loginPage = document.querySelector('.main_page').remove();
         }
         });
+
+        return this;
     }
 
-    // NOT WORKING!!!! SOS!!! NEED HELP!!!
-    // filter() {
-    //     this.test = this.profileFilter().search();
-    // }
+    filter() {
+        this.test = this.profileFilter.search();
+    }
 }
