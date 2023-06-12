@@ -13,12 +13,12 @@ export default class MainPage {
     }
 
     createPage() {
-        this.getCharacters.test();
+        this.getCharacters.createCard();
 
         this.mainPageWrapper = this.build.create('div')
-        .addClass('flex-container')
-        .addClass('main_page')
-        .appendTo(document.body);
+            .addClass('flex-container')
+            .addClass('main_page')
+            .appendTo(document.body);
 
         this.userBlock = this.build.create('div')
             .setAttribute({ id: 'userBlock' })
@@ -106,6 +106,6 @@ export default class MainPage {
     }
 
     filter() {
-        this.test = this.profileFilter.search();
+        this.searchByName = this.profileFilter.search();
     }
 }

@@ -12,65 +12,65 @@ export default class LoginPage {
     createPage() {
         this.router = new Router();
 
-        const loginWrapper = this.build.create('div')
+        this.loginWrapper = this.build.create('div')
             .addClass('flex-container')
             .addClass('login_page')
             .appendTo(document.body);
 
-        const loginForm = this.build.create('div')
+        this.loginForm = this.build.create('div')
             .addClass('login_form')
             .appendTo(document.querySelector('.login_page'));
 
-        const helloText = this.build.create('p')
+        this.helloText = this.build.create('p')
             .addClass('login_header')
             .setTextContent('Hello! You need to login')
             .appendTo(document.querySelector('.login_form'));
 
-        const form = this.build.create('form')
+        this.form = this.build.create('form')
             .addClass('loginFormWrapper')
             .appendTo(document.querySelector('.login_form'));
 
-        const loginText = this.build.create('p')
+        this.loginText = this.build.create('p')
             .addClass('loginText')
             .setTextContent('Login:')
             .appendTo(document.querySelector('.loginFormWrapper'));
 
-        const loginBlock = this.build.create('div')
+        this.loginBlock = this.build.create('div')
             .addClass('inputBlock')
             .setAttribute({ id: 'loginBlock' })
             .appendTo(document.querySelector('.loginFormWrapper'));
 
-        const loginInput = this.build.create('input')
+        this.loginInput = this.build.create('input')
             .addClass('inputWindow')
             .setAttribute({ placeholder: 'Your login...', type: 'text', name: 'login' })
             .appendTo(document.querySelector('#loginBlock'));
 
-        const passwordText = this.build.create('p')
+        this.passwordText = this.build.create('p')
             .addClass('loginText')
             .setTextContent('Password:')
             .appendTo(document.querySelector('.loginFormWrapper'));
 
-        const passwordBlock = this.build.create('div')
+        this.passwordBlock = this.build.create('div')
             .addClass('inputBlock')
             .setAttribute({ id: 'passwordBlock' })
             .appendTo(document.querySelector('.loginFormWrapper'));
 
-        const passwordInput = this.build.create('input')
+        this.passwordInput = this.build.create('input')
             .addClass('inputWindow')
             .setAttribute({ id: 'loginPasswordInput', placeholder: 'Your password...', type: 'password', name: 'password' })
             .appendTo(document.querySelector('#passwordBlock'));
 
-        const passwordSwitcher = this.build.create('img')
+        this.passwordSwitcher = this.build.create('img')
             .addClass('imgPasswordSwitcher')
             .setAttribute({ id: 'imgSwitcher', src: './assets/img/eye-off-outline.svg' })
             .appendTo(document.querySelector('#passwordBlock'));
 
-        const btnForm = this.build.create('button')
+        this.btnForm = this.build.create('button')
             .addClass('btnForm')
             .setTextContent('Lets start')
             .appendTo(document.querySelector('.loginFormWrapper'));
 
-        const registrationUrl = this.build.create('a')
+        this.registrationUrl = this.build.create('a')
             .setAttribute({ id: 'regUrl', href: './registration' })
             .setTextContent('Registration')
             .appendTo(document.querySelector('.login_form'));

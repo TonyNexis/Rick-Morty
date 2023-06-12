@@ -6,7 +6,7 @@ export default class GetCharacters {
         this.build = new ElementCreator();
     }
 
-    test() {
+    createCard() {
         FetchAPI.get('https://rickandmortyapi.com/api/character').then(data => {
             this.characters = data.results;
             this.cards = document.querySelector('.cards');
