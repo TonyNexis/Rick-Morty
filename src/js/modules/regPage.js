@@ -1,6 +1,5 @@
 /* eslint-disable import/extensions */
 /* eslint-disable max-len */
-// import FetchAPI from '../services/FetchAPI.js';
 import ElementCreator from '../services/ElementCreator.js';
 import Validation from '../services/Validation.js';
 import ValidationAnimation from '../services/ValidationAnimation.js';
