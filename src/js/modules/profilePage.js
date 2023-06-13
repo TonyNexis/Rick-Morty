@@ -1,11 +1,13 @@
 /* eslint-disable import/extensions */
 import FetchAPI from '../services/FetchAPI.js';
 import ElementCreator from '../services/ElementCreator.js';
+import Router from '../services/Router.js';
 
 export default class ProfilePage {
     constructor() {
         this.build = new ElementCreator();
         this.mainPage = document.querySelector('.main_page');
+        this.router = new Router();
     }
 
     createPage() {
@@ -35,15 +37,11 @@ export default class ProfilePage {
         return this;
     }
 
-    initEventListeners() {
-        this.goBackBtn = document.querySelector('.profile_page_btn');
-        this.cards = document.querySelector('.cards');
-        this.profileCard = document.querySelector('.profile_page');
-
-        this.cards.addEventListener('click', (e) => {
-        const card = e.target.closest('.card');
-        if (card) {
-            let urlCharacter = `https://rickandmortyapi.com/api/character/${card.id}`;
+    getProfileData(id = 0) {
+        if (id === 0) {
+          id = window.cardID;
+        }
+        let urlCharacter = `https://rickandmortyapi.com/api/character/${id}`;
 
         FetchAPI.get(urlCharacter).then(character => {
                 let type;
@@ -95,17 +93,16 @@ export default class ProfilePage {
                      </div>`;
             });
 
-        this.mainPage.style.display = 'none';
-        this.profileCard.style.display = 'block';
-        }
+          return this;
+    }
 
-        this.goBackBtn.addEventListener('click', () => {
-            setTimeout(() => {
-                this.mainPage.style.display = '';
-                this.profileCard.style.display = 'none';
-                document.querySelector('.profile').innerHTML = '';
-            }, 150);
-        });
+    initEventListeners() {
+      this.goBackBtn = document.querySelector('.profile_page_btn');
+
+      this.goBackBtn.addEventListener('click', () => {
+        setTimeout(() => {
+          this.router.navigateTo('/main');
+        }, 150);
     });
     }
 }

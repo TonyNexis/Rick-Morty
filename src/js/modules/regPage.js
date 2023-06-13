@@ -1,10 +1,10 @@
 /* eslint-disable import/extensions */
 /* eslint-disable max-len */
-// import FetchAPI from '../services/FetchAPI.js';
 import ElementCreator from '../services/ElementCreator.js';
 import Validation from '../services/Validation.js';
 import ValidationAnimation from '../services/ValidationAnimation.js';
 import ValidationMessage from '../services/ValidationMessage.js';
+import Router from '../services/Router.js';
 
 export default class RegPage {
     constructor() {
@@ -13,10 +13,12 @@ export default class RegPage {
     }
 
     createPage() {
+        this.router = new Router();
+
         this.registrationPage = this.build.create('div')
             .addClass('flex-container')
             .addClass('reg_page')
-            .addClass('hide')
+            // .addClass('hide')
             .appendTo(document.body);
 
         this.regForm = this.build.create('div')
@@ -76,7 +78,7 @@ export default class RegPage {
             .appendTo(document.querySelector('.regFormWrapper'));
 
         this.loginUrl = this.build.create('a')
-            .setAttribute({ id: 'loginUrl', href: '' })
+            .setAttribute({ id: 'loginUrl', href: './login' })
             .setTextContent('Go back')
             .appendTo(document.querySelector('.reg_form'));
 
@@ -89,8 +91,9 @@ export default class RegPage {
 
         this.loginUrl = document.querySelector('#loginUrl').addEventListener('click', (e) => {
             e.preventDefault();
-            this.registrationPage.classList.add('hide');
-            this.loginPage.classList.remove('hide');
+
+            this.router.navigateTo('/login');
+            this.loginPage = document.querySelector('.reg_page').remove();
 
             if (document.querySelector('.regMessageError')) {
                 document.querySelector('.regMessageError').remove();
@@ -131,10 +134,8 @@ export default class RegPage {
                     localStorage.setItem('userData', JSON.stringify(userData));
                     ValidationMessage.message('regMessageOk', 'Registration successful', this.regFormWrapper);
                     setTimeout(() => {
-                        this.registrationPage.classList.add('hide');
-                        this.loginPage.classList.remove('hide');
-
-                        this.regFormWrapper.reset();
+                        this.router.navigateTo('/login');
+                        this.loginPage = document.querySelector('.reg_page').remove();
 
                     if (document.querySelector('.regMessageOk')) {
                         document.querySelector('.regMessageOk').remove();
